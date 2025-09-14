@@ -11,78 +11,38 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
-        /* Uzay Panel Sistem Estetik */
-        .cosmic-bg {
-            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
-            position: relative;
-            overflow: hidden;
+        .hero-gradient {
+            background: linear-gradient(135deg, #000000 0%, #1a1a2e 100%);
         }
-        .cosmic-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: 
-                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.1) 0%, transparent 50%);
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        .glow-btn {
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
         }
-        .neon-glow {
-            box-shadow: 0 0 20px rgba(94, 84, 255, 0.6), 0 0 40px rgba(94, 84, 255, 0.4), 0 0 80px rgba(94, 84, 255, 0.2);
-        }
-        .neon-text {
-            text-shadow: 0 0 10px rgba(94, 84, 255, 0.8), 0 0 20px rgba(94, 84, 255, 0.6), 0 0 40px rgba(94, 84, 255, 0.4);
-        }
-        .cyber-card {
-            background: linear-gradient(145deg, rgba(30, 30, 60, 0.8) 0%, rgba(20, 20, 40, 0.9) 100%);
-            border: 1px solid rgba(94, 84, 255, 0.3);
-            transition: all 0.3s ease;
-        }
-        .cyber-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(94, 84, 255, 0.8);
-            box-shadow: 0 20px 40px rgba(94, 84, 255, 0.2);
-        }
-        .plasma-btn {
-            background: linear-gradient(45deg, #5e54ff, #9d7aff, #5e54ff);
-            background-size: 200% 200%;
-            animation: plasma-flow 3s ease-in-out infinite;
-        }
-        @keyframes plasma-flow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        .typing-indicator {
-            background: rgba(94, 84, 255, 0.1);
-            border: 1px solid rgba(94, 84, 255, 0.3);
+        .glow-btn:hover {
+            box-shadow: 0 0 25px rgba(59, 130, 246, 0.7);
         }
     </style>
 </head>
-<body class="font-sans antialiased text-white cosmic-bg min-h-screen">
+<body class="font-sans antialiased text-gray-900">
     <!-- Navigation -->
-    <nav class="glass-panel text-white sticky top-0 z-50 border-b border-purple-500/20">
+    <nav class="bg-black text-white sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
-                        <i data-feather="cpu" class="h-8 w-8 text-purple-400 neon-glow"></i>
-                        <span class="ml-2 text-xl font-bold neon-text">AI<span class="text-purple-400">Bot</span>Platform</span>
+                        <i data-feather="cpu" class="h-8 w-8 text-red-500"></i>
+                        <span class="ml-2 text-xl font-bold">AI<span class="text-red-500">Bot</span>Platform</span>
                     </div>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="{{ url_for('index') }}" class="px-3 py-2 rounded-md text-sm font-medium bg-purple-600/30 text-white border border-purple-500/50">Home</a>
-                        <a href="{{ url_for('pricing') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-purple-600/20 hover:border hover:border-purple-500/50 transition-all">Pricing</a>
-                        <a href="{{ url_for('register') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-purple-600/20 hover:border hover:border-purple-500/50 transition-all">Register</a>
-                        <a href="{{ url_for('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-purple-600/20 hover:border hover:border-purple-500/50 transition-all">Login</a>
+                        <a href="{{ url_for('index') }}" class="px-3 py-2 rounded-md text-sm font-medium bg-gray-900 text-white">Home</a>
+                        <a href="{{ url_for('pricing') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Pricing</a>
+                        <a href="{{ url_for('register') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Register</a>
+                        <a href="{{ url_for('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Login</a>
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
@@ -95,19 +55,19 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="cosmic-bg text-white relative overflow-hidden">
+    <section class="hero-gradient text-white">
         <div class="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8">
             <div class="text-center" data-aos="fade-up">
                 <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
-                    <span class="block neon-text">Automate Your Business</span>
-                    <span class="block text-purple-400 neon-text">With AI Conversations</span>
+                    <span class="block">Automate Your Business</span>
+                    <span class="block text-red-500">With AI Conversations</span>
                 </h1>
-                <p class="mt-6 max-w-lg mx-auto text-xl text-blue-200">
-                    🚀 Integrate smart bots with WhatsApp, Instagram, JivoChat and more. Let AI handle customer queries 24/7.
+                <p class="mt-6 max-w-lg mx-auto text-xl text-gray-300">
+                    Integrate smart bots with WhatsApp, Instagram, JivoChat and more. Let AI handle customer queries 24/7.
                 </p>
                 <div class="mt-10">
-                    <a href="{{ url_for('register') }}" class="plasma-btn neon-glow inline-flex items-center px-8 py-4 border border-transparent text-base font-medium rounded-2xl text-white font-bold hover:scale-105 transition-all duration-300">
-                        🌟 Get Started
+                    <a href="{{ url_for('register') }}" class="glow-btn inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
+                        Get Started
                         <i data-feather="arrow-right" class="ml-2"></i>
                     </a>
                 </div>
@@ -116,44 +76,44 @@
     </section>
 
     <!-- Features Section -->
-    <section class="py-20 cosmic-bg relative">
+    <section class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-white neon-text sm:text-4xl" data-aos="fade-up">
-                    🔥 Powerful Features for Your Business
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl" data-aos="fade-up">
+                    Powerful Features for Your Business
                 </h2>
-                <p class="mt-4 max-w-2xl text-xl text-blue-200 mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto" data-aos="fade-up" data-aos-delay="100">
                     Our AI bot learns from past conversations to provide better responses over time.
                 </p>
             </div>
             
             <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-                <div class="cyber-card glass-panel p-8 rounded-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-white neon-glow">
+                <div class="feature-card bg-gray-50 p-8 rounded-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-red-500 text-white">
                         <i data-feather="message-square"></i>
                     </div>
-                    <h3 class="mt-6 text-lg font-medium text-white">🔗 Multi-Platform Integration</h3>
-                    <p class="mt-2 text-base text-blue-200">
+                    <h3 class="mt-6 text-lg font-medium text-gray-900">Multi-Platform Integration</h3>
+                    <p class="mt-2 text-base text-gray-500">
                         Works seamlessly with WhatsApp, Instagram, JivoChat and other messaging platforms.
                     </p>
                 </div>
                 
-                <div class="cyber-card glass-panel p-8 rounded-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white neon-glow">
+                <div class="feature-card bg-gray-50 p-8 rounded-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-red-500 text-white">
                         <i data-feather="cpu"></i>
                     </div>
-                    <h3 class="mt-6 text-lg font-medium text-white">🤖 Self-Learning AI</h3>
-                    <p class="mt-2 text-base text-blue-200">
+                    <h3 class="mt-6 text-lg font-medium text-gray-900">Self-Learning AI</h3>
+                    <p class="mt-2 text-base text-gray-500">
                         Our bot improves itself by analyzing past conversations and customer interactions.
                     </p>
                 </div>
                 
-                <div class="cyber-card glass-panel p-8 rounded-2xl transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
-                    <div class="flex items-center justify-center h-12 w-12 rounded-full bg-gradient-to-r from-cyan-500 to-purple-500 text-white neon-glow">
+                <div class="feature-card bg-gray-50 p-8 rounded-lg transition-all duration-300" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center justify-center h-12 w-12 rounded-md bg-red-500 text-white">
                         <i data-feather="settings"></i>
                     </div>
-                    <h3 class="mt-6 text-lg font-medium text-white">⚙️ Easy Configuration</h3>
-                    <p class="mt-2 text-base text-blue-200">
+                    <h3 class="mt-6 text-lg font-medium text-gray-900">Easy Configuration</h3>
+                    <p class="mt-2 text-base text-gray-500">
                         Simple interface to define topics and responses. No coding required.
                     </p>
                 </div>
@@ -162,85 +122,85 @@
     </section>
 
     <!-- Live Demo Section -->
-    <section class="py-20 cosmic-bg text-white relative overflow-hidden">
+    <section class="py-20 bg-gradient-to-br from-gray-900 to-black text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center mb-16">
-                <h2 class="text-3xl font-extrabold text-white neon-text sm:text-4xl" data-aos="fade-up">
-                    🚀 Canlı Demo - SahilKamp AI
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl" data-aos="fade-up">
+                    🚀 Canlı Demo - SahilKamp Bot
                 </h2>
-                <p class="mt-4 max-w-2xl text-xl text-blue-200 lg:mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    🌟 Aşağıdaki chat widget ile gerçek AI botumuzla konuşun!
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Aşağıdaki chat widget ile botumuzla gerçek zamanlı konuşun
                 </p>
             </div>
 
             <div class="max-w-2xl mx-auto">
-                <div class="glass-panel cyber-card rounded-3xl shadow-2xl overflow-hidden border border-purple-500/30" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white rounded-2xl shadow-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
                     <!-- Chat Header -->
-                    <div class="bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 p-4 text-white neon-glow">
+                    <div class="bg-gradient-to-r from-red-500 to-red-600 p-4 text-white">
                         <div class="flex items-center space-x-3">
                             <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
                                 <i data-feather="message-circle" class="w-5 h-5"></i>
                             </div>
                             <div>
                                 <h3 class="font-semibold">SahilKamp AI Asistan</h3>
-                                <p class="text-sm text-purple-200">🟢 Çevrimiçi - GPT-5 Powered</p>
+                                <p class="text-sm text-red-100">🟢 Çevrimiçi</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Chat Messages -->
-                    <div class="h-96 overflow-y-auto p-4 space-y-4 bg-gradient-to-b from-gray-900/50 to-black/30" id="chat-messages">
+                    <div class="h-96 overflow-y-auto p-4 space-y-4 bg-gray-50" id="chat-messages">
                         <!-- Bot Message -->
                         <div class="flex items-start space-x-3" data-aos="fade-right" data-aos-delay="300">
-                            <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 neon-glow">
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <i data-feather="cpu" class="w-4 h-4 text-white"></i>
                             </div>
-                            <div class="glass-panel rounded-2xl rounded-tl-sm p-3 shadow-sm max-w-xs border border-purple-500/30">
-                                <p class="text-white text-sm">Merhaba! SahilKamp İstanbul'a hoşgeldiniz. Size nasıl yardımcı olabilirim? 🏕️</p>
-                                <span class="text-xs text-blue-300 block mt-1">09:32</span>
+                            <div class="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm max-w-xs">
+                                <p class="text-gray-800 text-sm">Merhaba! SahilKamp İstanbul'a hoşgeldiniz. Size nasıl yardımcı olabilirim? 🏕️</p>
+                                <span class="text-xs text-gray-500 block mt-1">09:32</span>
                             </div>
                         </div>
 
                         <!-- User Message -->
                         <div class="flex items-start space-x-3 justify-end" data-aos="fade-left" data-aos-delay="400">
-                            <div class="bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl rounded-tr-sm p-3 shadow-sm max-w-xs neon-glow">
+                            <div class="bg-red-500 rounded-2xl rounded-tr-sm p-3 shadow-sm max-w-xs">
                                 <p class="text-white text-sm">Merhaba! Hafta sonu çadırla gelmeyi düşünüyoruz, fiyatlar nedir?</p>
-                                <span class="text-xs text-blue-200 block mt-1">09:33</span>
+                                <span class="text-xs text-red-200 block mt-1">09:33</span>
                             </div>
-                            <div class="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 neon-glow">
+                            <div class="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">S</span>
                             </div>
                         </div>
 
                         <!-- Bot Response -->
                         <div class="flex items-start space-x-3" data-aos="fade-right" data-aos-delay="500">
-                            <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 neon-glow">
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <i data-feather="cpu" class="w-4 h-4 text-white"></i>
                             </div>
-                            <div class="glass-panel rounded-2xl rounded-tl-sm p-3 shadow-sm max-w-xs border border-purple-500/30">
-                                <p class="text-white text-sm">Hafta sonu çadır kamp fiyatımız kişi başı 750 TL'dir. Bu fiyata kahvaltı, akşam yemeği ve tüm aktiviteler dahildir! 🎪✨</p>
-                                <span class="text-xs text-blue-300 block mt-1">09:33</span>
+                            <div class="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm max-w-xs">
+                                <p class="text-gray-800 text-sm">Hafta sonu çadır kamp fiyatımız kişi başı 750 TL'dir. Bu fiyata kahvaltı, akşam yemeği ve tüm aktiviteler dahildir! 🎪✨</p>
+                                <span class="text-xs text-gray-500 block mt-1">09:33</span>
                             </div>
                         </div>
                     </div>
 
                     <!-- Chat Input -->
-                    <div class="p-4 glass-panel border-t border-purple-500/30">
+                    <div class="p-4 bg-white border-t border-gray-200">
                         <div class="flex space-x-3">
                             <input 
                                 type="text" 
                                 id="demo-input"
-                                placeholder="🔮 Mesajınızı yazın..." 
-                                class="flex-1 glass-panel border border-purple-500/50 rounded-full px-4 py-2 text-sm text-white placeholder-blue-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-400 bg-transparent typing-indicator"
+                                placeholder="Mesajınızı yazın..." 
+                                class="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
                             >
                             <button 
                                 id="demo-send"
-                                class="bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-full p-2 hover:scale-110 transition-all duration-200 flex items-center justify-center neon-glow"
+                                class="bg-red-500 text-white rounded-full p-2 hover:bg-red-600 transition-colors duration-200 flex items-center justify-center"
                             >
                                 <i data-feather="send" class="w-4 h-4"></i>
                             </button>
                         </div>
-                        <p class="text-xs text-blue-300 mt-2 text-center">🤖 GPT-5 ile desteklenen gerçek AI - SahilKamp senaryosu ile test edin!</p>
+                        <p class="text-xs text-gray-500 mt-2 text-center">🤖 Gerçek AI ile desteklenen demo - SahilKamp senaryosu ile test edin!</p>
                     </div>
                 </div>
             </div>
@@ -390,11 +350,11 @@
             if (isUser) {
                 messageDiv.innerHTML = `
                     <div class="flex items-start space-x-3 justify-end">
-                        <div class="bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl rounded-tr-sm p-3 shadow-sm max-w-xs neon-glow">
+                        <div class="bg-red-500 rounded-2xl rounded-tr-sm p-3 shadow-sm max-w-xs">
                             <p class="text-white text-sm">${message}</p>
-                            <span class="text-xs text-blue-200 block mt-1">${time}</span>
+                            <span class="text-xs text-red-200 block mt-1">${time}</span>
                         </div>
-                        <div class="w-8 h-8 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 neon-glow">
+                        <div class="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center flex-shrink-0">
                             <span class="text-white text-xs font-bold">S</span>
                         </div>
                     </div>
@@ -402,12 +362,12 @@
             } else {
                 messageDiv.innerHTML = `
                     <div class="flex items-start space-x-3">
-                        <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 neon-glow">
+                        <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
                             <i data-feather="cpu" class="w-4 h-4 text-white"></i>
                         </div>
-                        <div class="glass-panel rounded-2xl rounded-tl-sm p-3 shadow-sm max-w-xs border border-purple-500/30">
-                            <p class="text-white text-sm">${message}</p>
-                            <span class="text-xs text-blue-300 block mt-1">${time}</span>
+                        <div class="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm max-w-xs">
+                            <p class="text-gray-800 text-sm">${message}</p>
+                            <span class="text-xs text-gray-500 block mt-1">${time}</span>
                         </div>
                     </div>
                 `;
@@ -438,11 +398,11 @@
             typingDiv.id = 'typing-indicator';
             typingDiv.innerHTML = `
                 <div class="flex items-start space-x-3">
-                    <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full flex items-center justify-center flex-shrink-0 neon-glow">
+                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
                         <i data-feather="cpu" class="w-4 h-4 text-white"></i>
                     </div>
-                    <div class="glass-panel rounded-2xl rounded-tl-sm p-3 shadow-sm max-w-xs border border-purple-500/30">
-                        <p class="text-white text-sm">🤖 Düşünüyor...</p>
+                    <div class="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm max-w-xs">
+                        <p class="text-gray-800 text-sm">🤖 Düşünüyor...</p>
                     </div>
                 </div>
             `;

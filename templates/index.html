@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>AI Bot Platform - Smart Automation for Businesses</title>
+    <title>Botcuk Platform - Smart Automation for Businesses</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -37,7 +37,7 @@
                 <div class="flex items-center">
                     <div class="flex-shrink-0 flex items-center">
                         <i data-feather="cpu" class="h-8 w-8 text-red-500"></i>
-                        <span class="ml-2 text-xl font-bold">AI<span class="text-red-500">Bot</span>Platform</span>
+                        <span class="ml-2 text-xl font-bold">Botcuk <span class="text-red-500">Platform</span></span>
                     </div>
                 </div>
                 <div class="hidden md:block">
@@ -68,11 +68,15 @@
                 <p class="mt-6 max-w-lg mx-auto text-xl text-gray-300">
                     Integrate smart bots with WhatsApp, Instagram, JivoChat and more. Let AI handle customer queries 24/7.
                 </p>
-                <div class="mt-10">
+                <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="{{ url_for('register') }}" class="glow-btn inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
                         Get Started
                         <i data-feather="arrow-right" class="ml-2"></i>
                     </a>
+                    <button onclick="scrollToDemo()" class="inline-flex items-center px-6 py-3 border border-white text-base font-medium rounded-md text-white bg-transparent hover:bg-white hover:text-gray-900 transition-colors">
+                        🤖 Canlı Bot Demo
+                        <i data-feather="play-circle" class="ml-2"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -125,7 +129,7 @@
     </section>
 
     <!-- Live Demo Section -->
-    <section class="py-20 bg-gradient-to-br from-gray-900 to-black text-white">
+    <section id="live-demo" class="py-20 bg-gradient-to-br from-gray-900 to-black text-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center mb-16">
                 <h2 class="text-3xl font-extrabold text-white sm:text-4xl" data-aos="fade-up">
@@ -465,6 +469,17 @@
             });
         });
         observer.observe(demoSection);
+
+        // Scroll to demo function
+        function scrollToDemo() {
+            const demoSection = document.querySelector('#live-demo');
+            if (demoSection) {
+                demoSection.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
     </script>
 </body>
 </html>

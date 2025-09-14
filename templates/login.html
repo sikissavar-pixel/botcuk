@@ -132,6 +132,22 @@
         </div>
     </section>
 
+    <!-- Flash Mesajlar -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="fixed top-5 right-5 z-50">
+          {% for category, message in messages %}
+            <div class="px-4 py-2 rounded shadow mb-2
+              {% if category == 'success' %} bg-green-500 text-white
+              {% elif category == 'error' %} bg-red-500 text-white
+              {% else %} bg-gray-700 text-white {% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
     <!-- Footer -->
     <footer class="bg-black text-white">
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">

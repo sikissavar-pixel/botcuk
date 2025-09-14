@@ -97,14 +97,224 @@
         </div>
       </header>
 
-      <!-- Bot Configuration -->
+      <!-- Main Dashboard Content -->
       <main class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
-        <!-- senin bot config buraya kalıyor -->
+        {% if request.endpoint == 'dashboard' %}
+        <!-- Dashboard Ana İçerik -->
+        <div class="space-y-6">
+            <!-- Hoşgeldin Başlık -->
+            <div class="bg-gradient-to-r from-red-500 to-pink-600 rounded-lg p-6 text-white">
+                <h2 class="text-2xl font-bold">Hoşgeldin, {{ user.full_name }}! 🎉</h2>
+                <p class="mt-2 text-red-100">AI Bot platformuna tekrar hoşgeldin. İşte bot istatistiklerin:</p>
+            </div>
+
+            <!-- İstatistik Kartları -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Bot Konfigürasyonu -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center">
+                                <i data-feather="settings" class="h-5 w-5 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">Bot Ayarları</dt>
+                                <dd class="text-lg font-medium text-gray-900">
+                                    {% if stats.has_purpose and stats.has_info %}✅ Tamamlandı
+                                    {% elif stats.has_purpose or stats.has_info %}⚠️ Kısmi
+                                    {% else %}❌ Eksik{% endif %}
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kaydedilen Metinler -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-8 h-8 bg-green-500 rounded-md flex items-center justify-center">
+                                <i data-feather="file-text" class="h-5 w-5 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">Kaydedilen Metinler</dt>
+                                <dd class="text-lg font-medium text-gray-900">{{ stats.saved_texts_count }}</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tamamlanma Oranı -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-8 h-8 bg-purple-500 rounded-md flex items-center justify-center">
+                                <i data-feather="activity" class="h-5 w-5 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">Tamamlanma</dt>
+                                <dd class="text-lg font-medium text-gray-900">%{{ "%.0f"|format(stats.completion_percentage) }}</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bot Durumu -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0">
+                            <div class="w-8 h-8 bg-yellow-500 rounded-md flex items-center justify-center">
+                                <i data-feather="cpu" class="h-5 w-5 text-white"></i>
+                            </div>
+                        </div>
+                        <div class="ml-5 w-0 flex-1">
+                            <dl>
+                                <dt class="text-sm font-medium text-gray-500 truncate">Bot Durumu</dt>
+                                <dd class="text-lg font-medium text-gray-900">
+                                    {% if stats.has_purpose and stats.has_info %}🟢 Aktif
+                                    {% else %}🟡 Kurulum{% endif %}
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grafikler ve Sekmeler -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Haftalık Aktivite Grafiği -->
+                <div class="bg-white rounded-lg shadow">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Haftalık Metin Ekleme</h3>
+                        <p class="text-sm text-gray-500">Son 7 günde eklenen metinler</p>
+                    </div>
+                    <div class="p-6" style="height: 300px;">
+                        <canvas id="weeklyChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Bot Konfigürasyon Durumu -->
+                <div class="bg-white rounded-lg shadow">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Bot Konfigürasyon</h3>
+                        <p class="text-sm text-gray-500">Kurulum durumu</p>
+                    </div>
+                    <div class="p-6" style="height: 300px;">
+                        <canvas id="configChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hızlı Erişim ve Son Aktiviteler -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Hızlı Erişim -->
+                <div class="lg:col-span-1 bg-white rounded-lg shadow">
+                    <div class="px-6 py-4 border-b border-gray-200">
+                        <h3 class="text-lg font-medium text-gray-900">Hızlı Erişim</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <a href="{{ url_for('bot_settings') }}" 
+                           class="w-full flex items-center p-3 text-left border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i data-feather="settings" class="h-5 w-5 text-red-500 mr-3"></i>
+                            <div>
+                                <div class="font-medium text-gray-900">Bot Ayarları</div>
+                                <div class="text-sm text-gray-500">Botunu yapılandır</div>
+                            </div>
+                        </a>
+                        
+                        <a href="{{ url_for('conversations') }}" 
+                           class="w-full flex items-center p-3 text-left border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i data-feather="message-square" class="h-5 w-5 text-blue-500 mr-3"></i>
+                            <div>
+                                <div class="font-medium text-gray-900">Konuşmalar</div>
+                                <div class="text-sm text-gray-500">Chat geçmişini görüntüle</div>
+                            </div>
+                        </a>
+                        
+                        <a href="{{ url_for('analytics') }}" 
+                           class="w-full flex items-center p-3 text-left border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                            <i data-feather="bar-chart-2" class="h-5 w-5 text-green-500 mr-3"></i>
+                            <div>
+                                <div class="font-medium text-gray-900">Analitik</div>
+                                <div class="text-sm text-gray-500">Performans istatistikleri</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Son Eklenen Metinler -->
+                <div class="lg:col-span-2 bg-white rounded-lg shadow">
+                    <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-lg font-medium text-gray-900">Son Eklenen Metinler</h3>
+                            <p class="text-sm text-gray-500">En son kaydedilen bot metinleri</p>
+                        </div>
+                        <a href="{{ url_for('bot_settings') }}" class="text-sm text-red-600 hover:text-red-500">
+                            Tümünü gör →
+                        </a>
+                    </div>
+                    <div class="p-6">
+                        {% if stats.recent_texts %}
+                            <div class="space-y-4">
+                                {% for text in stats.recent_texts %}
+                                <div class="flex items-start space-x-4 p-4 border border-gray-200 rounded-lg">
+                                    <div class="flex-shrink-0">
+                                        <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                                            <i data-feather="file" class="h-4 w-4 text-blue-600"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium text-gray-900 truncate">{{ text.title }}</p>
+                                            <p class="text-xs text-gray-500">{{ text.created_at.strftime('%d.%m.%Y') }}</p>
+                                        </div>
+                                        <p class="text-sm text-gray-500 mt-1 line-clamp-2">{{ text.content[:80] }}{% if text.content|length > 80 %}...{% endif %}</p>
+                                        {% if text.keywords %}
+                                        <div class="flex flex-wrap gap-1 mt-2">
+                                            {% for keyword in text.keywords.split(',')[:3] %}
+                                            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                                {{ keyword.strip() }}
+                                            </span>
+                                            {% endfor %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="text-center py-8">
+                                <i data-feather="file-plus" class="h-12 w-12 text-gray-300 mx-auto mb-4"></i>
+                                <h4 class="text-lg font-medium text-gray-900 mb-2">Henüz metin eklenmemiş</h4>
+                                <p class="text-gray-500 mb-4">Bot ayarlarından ilk metninizi ekleyebilirsiniz.</p>
+                                <a href="{{ url_for('bot_settings') }}" 
+                                   class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
+                                    <i data-feather="plus" class="h-4 w-4 mr-2"></i>
+                                    Metin Ekle
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <!-- Diğer sayfa içerikleri -->
         {% block content %}
         {% endblock %}
+        {% endif %}
       </main>
     </div>
   </div>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <script>
     AOS.init();
@@ -136,6 +346,93 @@
     document.getElementById("userMenuButton").addEventListener("click", () => {
       document.getElementById("userMenu").classList.toggle("hidden");
     });
+
+    // Dashboard Grafikleri (sadece dashboard sayfasında çalıştır)
+    {% if request.endpoint == 'dashboard' and stats %}
+    document.addEventListener('DOMContentLoaded', function() {
+        // Haftalık aktivite grafiği
+        const weeklyCtx = document.getElementById('weeklyChart');
+        if (weeklyCtx) {
+            new Chart(weeklyCtx, {
+                type: 'line',
+                data: {
+                    labels: {{ stats.week_data | map(attribute='date') | list | tojson }},
+                    datasets: [{
+                        label: 'Eklenen Metinler',
+                        data: {{ stats.week_data | map(attribute='count') | list | tojson }},
+                        borderColor: 'rgb(239, 68, 68)',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: 'rgb(239, 68, 68)',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1
+                            },
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Bot konfigürasyon grafiği
+        const configCtx = document.getElementById('configChart');
+        if (configCtx) {
+            new Chart(configCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Tamamlandı', 'Eksik'],
+                    datasets: [{
+                        data: [{{ stats.completion_percentage }}, {{ 100 - stats.completion_percentage }}],
+                        backgroundColor: [
+                            'rgb(34, 197, 94)',
+                            'rgb(229, 231, 235)'
+                        ],
+                        borderWidth: 0,
+                        cutout: '60%'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                padding: 20,
+                                font: {
+                                    size: 12
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+    });
+    {% endif %}
   </script>
 </body>
 </html>

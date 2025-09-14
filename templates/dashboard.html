@@ -35,38 +35,51 @@
           <i data-feather="chevron-left"></i>
         </button>
       </div>
-      <nav class="mt-6">
-        <div class="px-4 space-y-1">
-          <a href="{{ url_for('dashboard') }}" class="flex items-center px-2 py-3 text-sm font-medium rounded-md text-white bg-gray-900">
-            <i data-feather="home" class="text-gray-300 mr-3 flex-shrink-0 h-6 w-6"></i>
-            <span class="nav-text">Dashboard</span>
+      <nav class="mt-8">
+        <div class="px-4 space-y-2">
+          <!-- Dashboard Link -->
+          <a href="{{ url_for('dashboard') }}" class="group flex items-center px-3 py-3 text-sm font-medium rounded-xl text-white bg-gradient-to-r from-red-500 to-red-600 shadow-lg transition-all duration-200 hover:shadow-xl">
+            <i data-feather="home" class="text-red-100 mr-3 flex-shrink-0 h-5 w-5 group-hover:scale-110 transition-transform"></i>
+            <span class="nav-text">🏠 Ana Sayfa</span>
           </a>
-          <a href="{{ url_for('conversations') }}" class="flex items-center px-2 py-3 text-sm font-medium rounded-md text-gray-300 hover:text-white hover:bg-gray-700">
-            <i data-feather="message-square" class="text-gray-400 mr-3 flex-shrink-0 h-6 w-6"></i>
-            <span class="nav-text">Conversations</span>
+          
+          <!-- Conversations -->
+          <a href="{{ url_for('conversations') }}" class="group flex items-center px-3 py-3 text-sm font-medium rounded-xl text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 hover:shadow-lg">
+            <i data-feather="message-square" class="text-gray-400 mr-3 flex-shrink-0 h-5 w-5 group-hover:text-blue-400 group-hover:scale-110 transition-all"></i>
+            <span class="nav-text">💬 Konuşmalar</span>
           </a>
-          <a href="{{ url_for('bot_settings') }}" class="flex items-center px-2 py-3 text-sm font-medium rounded-md text-gray-300 hover:text-white hover:bg-gray-700">
-            <i data-feather="settings" class="text-gray-400 mr-3 flex-shrink-0 h-6 w-6"></i>
-            <span class="nav-text">Bot Settings</span>
+          
+          <!-- Bot Settings -->
+          <a href="{{ url_for('bot_settings') }}" class="group flex items-center px-3 py-3 text-sm font-medium rounded-xl text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 hover:shadow-lg">
+            <i data-feather="settings" class="text-gray-400 mr-3 flex-shrink-0 h-5 w-5 group-hover:text-green-400 group-hover:scale-110 transition-all"></i>
+            <span class="nav-text">⚙️ Bot Ayarları</span>
           </a>
-          <a href="{{ url_for('users') }}" class="flex items-center px-2 py-3 text-sm font-medium rounded-md text-gray-300 hover:text-white hover:bg-gray-700">
-            <i data-feather="users" class="text-gray-400 mr-3 flex-shrink-0 h-6 w-6"></i>
-            <span class="nav-text">Users</span>
+          
+          <!-- Users -->
+          <a href="{{ url_for('users') }}" class="group flex items-center px-3 py-3 text-sm font-medium rounded-xl text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 hover:shadow-lg">
+            <i data-feather="users" class="text-gray-400 mr-3 flex-shrink-0 h-5 w-5 group-hover:text-purple-400 group-hover:scale-110 transition-all"></i>
+            <span class="nav-text">👥 Kullanıcılar</span>
           </a>
-          <a href="{{ url_for('analytics') }}" class="flex items-center px-2 py-3 text-sm font-medium rounded-md text-gray-300 hover:text-white hover:bg-gray-700">
-            <i data-feather="bar-chart-2" class="text-gray-400 mr-3 flex-shrink-0 h-6 w-6"></i>
-            <span class="nav-text">Analytics</span>
+          
+          <!-- Analytics -->
+          <a href="{{ url_for('analytics') }}" class="group flex items-center px-3 py-3 text-sm font-medium rounded-xl text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 hover:shadow-lg">
+            <i data-feather="bar-chart-2" class="text-gray-400 mr-3 flex-shrink-0 h-5 w-5 group-hover:text-yellow-400 group-hover:scale-110 transition-all"></i>
+            <span class="nav-text">📊 Analitik</span>
           </a>
-          <a href="{{ url_for('billing') }}" class="flex items-center px-2 py-3 text-sm font-medium rounded-md text-gray-300 hover:text-white hover:bg-gray-700">
-            <i data-feather="credit-card" class="text-gray-400 mr-3 flex-shrink-0 h-6 w-6"></i>
-            <span class="nav-text">Billing</span>
+          
+          <!-- Billing -->
+          <a href="{{ url_for('billing') }}" class="group flex items-center px-3 py-3 text-sm font-medium rounded-xl text-gray-300 hover:text-white hover:bg-gray-800 transition-all duration-200 hover:shadow-lg">
+            <i data-feather="credit-card" class="text-gray-400 mr-3 flex-shrink-0 h-5 w-5 group-hover:text-orange-400 group-hover:scale-110 transition-all"></i>
+            <span class="nav-text">💳 Faturalandırma</span>
           </a>
         </div>
       </nav>
-      <div class="absolute bottom-0 w-full px-4 py-4 border-t border-gray-800">
-        <a href="{{ url_for('logout') }}" class="flex items-center text-sm font-medium text-gray-300 hover:text-white">
-          <i data-feather="log-out" class="text-gray-400 mr-3 flex-shrink-0 h-6 w-6"></i>
-          <span class="nav-text">Sign out</span>
+      
+      <!-- Logout Section -->
+      <div class="absolute bottom-0 w-full px-4 py-6 border-t border-gray-800">
+        <a href="{{ url_for('logout') }}" class="group flex items-center px-3 py-3 text-sm font-medium rounded-xl text-gray-300 hover:text-red-400 hover:bg-red-900/20 transition-all duration-200">
+          <i data-feather="log-out" class="text-gray-400 mr-3 flex-shrink-0 h-5 w-5 group-hover:text-red-400 group-hover:scale-110 transition-all"></i>
+          <span class="nav-text">🚪 Çıkış Yap</span>
         </a>
       </div>
     </div>
@@ -76,21 +89,39 @@
       <!-- Top Navigation -->
       <header class="bg-white shadow-sm">
         <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex justify-between items-center">
-          <h1 class="text-lg font-semibold text-gray-900">Bot Configuration</h1>
+          <h1 class="text-lg font-semibold text-gray-900">🤖 Bot Yönetim Paneli</h1>
           <div class="flex items-center space-x-4">
-            <button class="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none">
-              <i data-feather="bell"></i>
+            <button class="p-2 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 focus:outline-none transition-all duration-200">
+              <i data-feather="bell" class="h-5 w-5"></i>
             </button>
-            <!-- User Dropdown -->
+            <!-- User Dropdown - Şık Avatar -->
             <div class="relative inline-block text-left">
-              <button id="userMenuButton" class="flex items-center space-x-2 focus:outline-none">
-                <img src="https://via.placeholder.com/32" class="rounded-full" alt="User Avatar">
-                <span>{{ user.full_name if user else "Admin User" }}</span>
-                <i data-feather="chevron-down"></i>
+              <button id="userMenuButton" class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 focus:outline-none transition-all duration-200">
+                {% set user_initials = user.full_name.split()[:2] | map('first') | join('') | upper if user and user.full_name else 'AA' %}
+                <div class="w-8 h-8 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center text-white text-sm font-semibold shadow-lg">
+                  {{ user_initials }}
+                </div>
+                <span class="text-sm font-medium text-gray-700">{{ user.full_name if user else "Yönetici" }}</span>
+                <i data-feather="chevron-down" class="h-4 w-4 text-gray-400"></i>
               </button>
-              <div id="userMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
-                <a href="{{ url_for('dashboard') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
-                <a href="{{ url_for('logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</a>
+              <div id="userMenu" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 border border-gray-100 overflow-hidden">
+                <div class="px-4 py-3 border-b border-gray-100">
+                  <p class="text-sm font-medium text-gray-900">{{ user.full_name if user else "Yönetici" }}</p>
+                  <p class="text-xs text-gray-500">{{ user.email if user else "admin@aibot.com" }}</p>
+                </div>
+                <a href="{{ url_for('dashboard') }}" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                  <i data-feather="home" class="h-4 w-4 mr-3 text-gray-400"></i>
+                  Ana Sayfa
+                </a>
+                <a href="{{ url_for('bot_settings') }}" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                  <i data-feather="settings" class="h-4 w-4 mr-3 text-gray-400"></i>
+                  Bot Ayarları
+                </a>
+                <hr class="border-gray-100">
+                <a href="{{ url_for('logout') }}" class="flex items-center px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors">
+                  <i data-feather="log-out" class="h-4 w-4 mr-3 text-red-500"></i>
+                  Çıkış Yap
+                </a>
               </div>
             </div>
           </div>

@@ -5,6 +5,7 @@ integrations = ["python_openai:1.0.0"]
 
 [nix]
 channel = "stable-25_05"
+packages = ["sqlite"]
 
 [workflows]
 runButton = "Project"
@@ -33,10 +34,6 @@ outputType = "webview"
 [[ports]]
 localPort = 5000
 externalPort = 80
-
-[[ports]]
-localPort = 44845
-externalPort = 3000
 
 [deployment]
 deploymentTarget = "autoscale"

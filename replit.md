@@ -1,6 +1,6 @@
 # Overview
 
-This is an AI Bot Platform - a Flask-based web application that provides smart automation for businesses through AI-powered chatbots. The platform features user authentication, a dashboard interface for managing bot settings and conversations, and an API for chat interactions. It's designed as a SaaS solution with pricing tiers and user management capabilities.
+This is a Botcuk Platform - a Flask-based web application that provides smart automation for businesses through AI-powered chatbots. The platform features user authentication, a dashboard interface for managing bot settings and conversations, and an API for chat interactions. It's designed as a SaaS solution with pricing tiers and user management capabilities.
 
 # User Preferences
 

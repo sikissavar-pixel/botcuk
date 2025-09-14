@@ -25,7 +25,7 @@ def chat_with_sahilkamp_bot(user_message):
         system_prompt = """Sen SahilKamp İstanbul'un AI asistanısın. Çok akıllı, yardımsever ve dostane bir asistansın.
         
         SahilKamp Bilgileri:
-        - Hafta sonu çadır kamp: 750 TL kişi başı (kahvaltı, akşam yemeği ve aktiviteler dahil)
+        - Hafta sonu çadır kamp: 750 TL kişi başı (aktiviteler dahil)
         - Hafta içi çadır kamp: 550 TL kişi başı
         - Çadır kiralama: 150 TL/gece
         - Aktiviteler: Kano, trekking, ateş başı etkinlikleri, doğa yürüyüşü

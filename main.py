@@ -103,7 +103,14 @@ def register():
             db.session.add(new_user)
             db.session.commit()
 
-            session["user"] = {"id": new_user.id, "full_name": new_user.full_name, "email": new_user.email}
+            # Admin kontrolü (sahilkamp@gmail.com admin'dir)
+            is_admin = (new_user.email == "sahilkamp@gmail.com")
+            session["user"] = {
+                "id": new_user.id, 
+                "full_name": new_user.full_name, 
+                "email": new_user.email,
+                "is_admin": is_admin
+            }
             flash("Kayıt başarılı! Hoş geldin 🎉", "success")
             return redirect(url_for("dashboard"))
         except Exception as e:
@@ -127,7 +134,14 @@ def login():
         try:
             user = User.query.filter_by(email=email).first()
             if user and check_password_hash(user.password, password):
-                session["user"] = {"id": user.id, "full_name": user.full_name, "email": user.email}
+                # Admin kontrolü (sahilkamp@gmail.com admin'dir)
+                is_admin = (user.email == "sahilkamp@gmail.com")
+                session["user"] = {
+                    "id": user.id, 
+                    "full_name": user.full_name, 
+                    "email": user.email,
+                    "is_admin": is_admin
+                }
                 flash("Giriş başarılı! 👌", "success")
                 return redirect(url_for("dashboard"))
             else:

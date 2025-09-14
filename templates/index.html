@@ -121,6 +121,92 @@
         </div>
     </section>
 
+    <!-- Live Demo Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-900 to-black text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl" data-aos="fade-up">
+                    🚀 Canlı Demo - SahilKamp Bot
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-300 lg:mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Aşağıdaki chat widget ile botumuzla gerçek zamanlı konuşun
+                </p>
+            </div>
+
+            <div class="max-w-2xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-2xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <!-- Chat Header -->
+                    <div class="bg-gradient-to-r from-red-500 to-red-600 p-4 text-white">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center">
+                                <i data-feather="message-circle" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold">SahilKamp AI Asistan</h3>
+                                <p class="text-sm text-red-100">🟢 Çevrimiçi</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Messages -->
+                    <div class="h-96 overflow-y-auto p-4 space-y-4 bg-gray-50" id="chat-messages">
+                        <!-- Bot Message -->
+                        <div class="flex items-start space-x-3" data-aos="fade-right" data-aos-delay="300">
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i data-feather="cpu" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm max-w-xs">
+                                <p class="text-gray-800 text-sm">Merhaba! SahilKamp İstanbul'a hoşgeldiniz. Size nasıl yardımcı olabilirim? 🏕️</p>
+                                <span class="text-xs text-gray-500 block mt-1">09:32</span>
+                            </div>
+                        </div>
+
+                        <!-- User Message -->
+                        <div class="flex items-start space-x-3 justify-end" data-aos="fade-left" data-aos-delay="400">
+                            <div class="bg-red-500 rounded-2xl rounded-tr-sm p-3 shadow-sm max-w-xs">
+                                <p class="text-white text-sm">Merhaba! Hafta sonu çadırla gelmeyi düşünüyoruz, fiyatlar nedir?</p>
+                                <span class="text-xs text-red-200 block mt-1">09:33</span>
+                            </div>
+                            <div class="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center flex-shrink-0">
+                                <span class="text-white text-xs font-bold">S</span>
+                            </div>
+                        </div>
+
+                        <!-- Bot Response -->
+                        <div class="flex items-start space-x-3" data-aos="fade-right" data-aos-delay="500">
+                            <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                <i data-feather="cpu" class="w-4 h-4 text-white"></i>
+                            </div>
+                            <div class="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm max-w-xs">
+                                <p class="text-gray-800 text-sm">Hafta sonu çadır kamp fiyatımız kişi başı 750 TL'dir. Bu fiyata kahvaltı, akşam yemeği ve tüm aktiviteler dahildir! 🎪✨</p>
+                                <span class="text-xs text-gray-500 block mt-1">09:33</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input -->
+                    <div class="p-4 bg-white border-t border-gray-200">
+                        <div class="flex space-x-3">
+                            <input 
+                                type="text" 
+                                id="demo-input"
+                                placeholder="Mesajınızı yazın..." 
+                                class="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                            >
+                            <button 
+                                id="demo-send"
+                                class="bg-red-500 text-white rounded-full p-2 hover:bg-red-600 transition-colors duration-200 flex items-center justify-center"
+                            >
+                                <i data-feather="send" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-2 text-center">💡 Bu gerçek bir AI bot değil, sadece demo amaçlıdır</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- How It Works -->
     <section class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -248,6 +334,99 @@
             once: true
         });
         feather.replace();
+
+        // Demo Chat Functionality
+        const chatMessages = document.getElementById('chat-messages');
+        const demoInput = document.getElementById('demo-input');
+        const demoSendBtn = document.getElementById('demo-send');
+
+        // SahilKamp bot responses
+        const botResponses = [
+            "Harika! Kaç kişi gelmeyi planlıyorsunuz? 👥",
+            "Hangi tarihler için rezervasyon yapmak istiyorsunuz? 📅",
+            "Çadırınız var mı yoksa bizden kiralayacak mısınız? ⛺",
+            "Aktivitelere katılmak ister misiniz? Kano, trekking ve ateş başı etkinliklerimiz var! 🚣‍♀️🥾🔥",
+            "Evcil hayvanınız var mı? Pet-friendly alanlarımız mevcut! 🐕",
+            "Çocuklu misafirlerimiz için özel aktivite alanları da var! 👶",
+            "Ulaşım konusunda yardıma ihtiyacınız var mı? 🚌",
+            "Özel diyet ihtiyaçlarınız varsa lütfen belirtin! 🥗",
+            "Rezervasyon için ön ödeme %30'dur, kalan tutarı geldiğinizde ödeyebilirsiniz! 💳",
+            "Başka sorularınız varsa size yardımcı olmaktan mutluluk duyarım! 😊"
+        ];
+
+        let responseIndex = 0;
+
+        function addMessage(message, isUser = false) {
+            const messageDiv = document.createElement('div');
+            const time = new Date().toLocaleTimeString('tr-TR', {hour: '2-digit', minute: '2-digit'});
+            
+            if (isUser) {
+                messageDiv.innerHTML = `
+                    <div class="flex items-start space-x-3 justify-end">
+                        <div class="bg-red-500 rounded-2xl rounded-tr-sm p-3 shadow-sm max-w-xs">
+                            <p class="text-white text-sm">${message}</p>
+                            <span class="text-xs text-red-200 block mt-1">${time}</span>
+                        </div>
+                        <div class="w-8 h-8 bg-gray-400 rounded-full flex items-center justify-center flex-shrink-0">
+                            <span class="text-white text-xs font-bold">S</span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i data-feather="cpu" class="w-4 h-4 text-white"></i>
+                        </div>
+                        <div class="bg-white rounded-2xl rounded-tl-sm p-3 shadow-sm max-w-xs">
+                            <p class="text-gray-800 text-sm">${message}</p>
+                            <span class="text-xs text-gray-500 block mt-1">${time}</span>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            feather.replace(); // Re-render feather icons
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function sendMessage() {
+            const message = demoInput.value.trim();
+            if (!message) return;
+
+            // Add user message
+            addMessage(message, true);
+            demoInput.value = '';
+
+            // Add bot response after a delay
+            setTimeout(() => {
+                const response = botResponses[responseIndex % botResponses.length];
+                addMessage(response, false);
+                responseIndex++;
+            }, 1000 + Math.random() * 1000); // Random delay between 1-2 seconds
+        }
+
+        // Event listeners
+        demoSendBtn.addEventListener('click', sendMessage);
+        demoInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Focus input when demo section comes into view
+        const demoSection = document.querySelector('#chat-messages');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => demoInput.focus(), 500);
+                }
+            });
+        });
+        observer.observe(demoSection);
     </script>
 </body>
 </html>

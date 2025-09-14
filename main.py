@@ -149,22 +149,75 @@ def dashboard():
     has_purpose = bool(bot_settings and bot_settings.bot_purpose)
     has_info = bool(bot_settings and bot_settings.bot_title and bot_settings.bot_info_text)
     
+    # Eğer gerçek veri yoksa örnek veriler göster
+    if not bot_settings and saved_texts_count == 0:
+        # Örnek bot ayarları oluştur
+        has_purpose = True
+        has_info = True
+        saved_texts_count = 8
+        
+        # Örnek son metinler
+        from datetime import datetime, timedelta
+        now = datetime.now()
+        recent_texts = [
+            type('obj', (object,), {
+                'title': 'Çadır Kurulum Rehberi',
+                'content': 'Çadırınızı kurarken önce düz bir alan seçin. Zeminin temiz ve keskin cisimlerden arındırılmış olduğundan emin olun. Çadır bezini yere serip köşe iplerini sabitleyin.',
+                'keywords': 'çadır, kurulum, kamp, setup',
+                'created_at': now - timedelta(hours=2)
+            }),
+            type('obj', (object,), {
+                'title': 'Kamp Malzemeleri Listesi',
+                'content': 'Kamp için gerekli temel malzemeler: çadır, uyku tulumu, mat, el feneri, ilk yardım çantası, su şişesi, kamp yemeği, çakı, harita ve pusula.',
+                'keywords': 'kamp, malzeme, liste, ekipman',
+                'created_at': now - timedelta(hours=5)
+            }),
+            type('obj', (object,), {
+                'title': 'Doğa Yürüyüşü İpuçları',
+                'content': 'Doğa yürüyüşünde güvenlik öncelikli olmalıdır. Hava durumunu kontrol edin, uygun kıyafet giyin, yeterli su ve yiyecek alın. Rotanızı önceden planlayın.',
+                'keywords': 'trekking, yürüyüş, güvenlik, doğa',
+                'created_at': now - timedelta(hours=8)
+            }),
+            type('obj', (object,), {
+                'title': 'Kamp Ateşi Güvenliği',
+                'content': 'Kamp ateşi yakarken güvenlik kurallarına uyun. Ateşi tamamen söndürmeden kampı terk etmeyin. Su ve kum bulundurun. Rüzgarlı havalarda ateş yakmayın.',
+                'keywords': 'ateş, güvenlik, kamp, yangın',
+                'created_at': now - timedelta(days=1)
+            }),
+            type('obj', (object,), {
+                'title': 'Outdoor Fotoğrafçılık',
+                'content': 'Doğa fotoğrafçılığında sabah ve akşam saatleri ideal aydınlatma sağlar. Ekipmanınızı hava koşullarından koruyun. Doğaya saygı gösterin.',
+                'keywords': 'fotoğraf, outdoor, doğa, çekim',
+                'created_at': now - timedelta(days=2)
+            })
+        ]
+    
     # Haftalık metin ekleme grafiği için veri (son 7 gün)
     from datetime import datetime, timedelta
     today = datetime.now()
     week_data = []
-    for i in range(7):
-        date = today - timedelta(days=6-i)
-        day_count = SavedBotText.query.filter_by(user_id=user_id).filter(
-            db.func.date(SavedBotText.created_at) == date.date()
-        ).count()
-        week_data.append({
-            'date': date.strftime('%d.%m'),
-            'count': day_count
-        })
+    
+    if saved_texts_count == 0:  # Eğer gerçek veri yoksa örnek veri
+        example_counts = [0, 1, 0, 2, 1, 3, 1]  # Son 7 günün örnek verileri
+        for i in range(7):
+            date = today - timedelta(days=6-i)
+            week_data.append({
+                'date': date.strftime('%d.%m'),
+                'count': example_counts[i]
+            })
+    else:  # Gerçek veri varsa
+        for i in range(7):
+            date = today - timedelta(days=6-i)
+            day_count = SavedBotText.query.filter_by(user_id=user_id).filter(
+                db.func.date(SavedBotText.created_at) == date.date()
+            ).count()
+            week_data.append({
+                'date': date.strftime('%d.%m'),
+                'count': day_count
+            })
     
     dashboard_stats = {
-        'bot_settings_count': 1 if bot_settings else 0,
+        'bot_settings_count': 1 if (bot_settings or saved_texts_count == 0) else 0,
         'saved_texts_count': saved_texts_count,
         'has_purpose': has_purpose,
         'has_info': has_info,

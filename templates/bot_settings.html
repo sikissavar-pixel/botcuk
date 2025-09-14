@@ -1,21 +1,21 @@
 {% extends "dashboard.html" %}
 {% block content %}
-<div class="bg-white shadow rounded-lg">
+<div class="bg-gray-800 shadow rounded-lg">
     <!-- Tab Navigation -->
-    <div class="border-b border-gray-200">
+    <div class="border-b border-gray-600">
         <nav class="-mb-px flex space-x-8">
             <button onclick="showTab('purpose')" id="purpose-tab" 
-                    class="tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
                 <i data-feather="target" class="inline-block w-4 h-4 mr-2"></i>
                 Bot Amacı
             </button>
             <button onclick="showTab('info')" id="info-tab" 
-                    class="tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
                 <i data-feather="settings" class="inline-block w-4 h-4 mr-2"></i>
                 Bot Bilgileri
             </button>
             <button onclick="showTab('saved')" id="saved-tab" 
-                    class="tab-button border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
                 <i data-feather="file-text" class="inline-block w-4 h-4 mr-2"></i>
                 Kaydedilen Metinler
             </button>

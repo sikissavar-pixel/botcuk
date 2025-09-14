@@ -75,16 +75,16 @@
   <!-- Grafikler -->
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Trafik Grafiği -->
-    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-      <h3 class="text-lg font-semibold text-gray-800 mb-4">📈 Günlük Trafik</h3>
+    <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+      <h3 class="text-lg font-semibold text-gray-100 mb-4">📈 Günlük Trafik</h3>
       <div class="h-64">
         <canvas id="trafficChart"></canvas>
       </div>
     </div>
 
     <!-- Kullanıcı Davranışı -->
-    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-      <h3 class="text-lg font-semibold text-gray-800 mb-4">👥 Kullanıcı Aktivitesi</h3>
+    <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+      <h3 class="text-lg font-semibold text-gray-100 mb-4">👥 Kullanıcı Aktivitesi</h3>
       <div class="h-64">
         <canvas id="userActivityChart"></canvas>
       </div>
@@ -94,68 +94,68 @@
   <!-- İkinci Satır Grafikler -->
   <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
     <!-- Cihaz Türleri -->
-    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-      <h3 class="text-lg font-semibold text-gray-800 mb-4">📱 Cihaz Türleri</h3>
+    <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+      <h3 class="text-lg font-semibold text-gray-100 mb-4">📱 Cihaz Türleri</h3>
       <div class="h-48">
         <canvas id="deviceChart"></canvas>
       </div>
     </div>
 
     <!-- En Popüler Saatler -->
-    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-      <h3 class="text-lg font-semibold text-gray-800 mb-4">🕐 Popüler Saatler</h3>
+    <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+      <h3 class="text-lg font-semibold text-gray-100 mb-4">🕐 Popüler Saatler</h3>
       <div class="h-48">
         <canvas id="hoursChart"></canvas>
       </div>
     </div>
 
     <!-- Coğrafi Dağılım -->
-    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-      <h3 class="text-lg font-semibold text-gray-800 mb-4">🌍 Şehir Dağılımı</h3>
+    <div class="bg-gray-800 p-6 rounded-xl shadow-lg border border-gray-700">
+      <h3 class="text-lg font-semibold text-gray-100 mb-4">🌍 Şehir Dağılımı</h3>
       <div class="space-y-3">
         <div class="flex justify-between items-center">
-          <span class="text-sm text-gray-600">İstanbul</span>
+          <span class="text-sm text-gray-300">İstanbul</span>
           <div class="flex items-center space-x-2">
-            <div class="w-20 bg-gray-200 rounded-full h-2">
+            <div class="w-20 bg-gray-600 rounded-full h-2">
               <div class="bg-red-500 h-2 rounded-full" style="width: 45%"></div>
             </div>
-            <span class="text-sm font-semibold text-gray-800">45%</span>
+            <span class="text-sm font-semibold text-gray-200">45%</span>
           </div>
         </div>
         <div class="flex justify-between items-center">
-          <span class="text-sm text-gray-600">Ankara</span>
+          <span class="text-sm text-gray-300">Ankara</span>
           <div class="flex items-center space-x-2">
-            <div class="w-20 bg-gray-200 rounded-full h-2">
+            <div class="w-20 bg-gray-600 rounded-full h-2">
               <div class="bg-blue-500 h-2 rounded-full" style="width: 28%"></div>
             </div>
-            <span class="text-sm font-semibold text-gray-800">28%</span>
+            <span class="text-sm font-semibold text-gray-200">28%</span>
           </div>
         </div>
         <div class="flex justify-between items-center">
-          <span class="text-sm text-gray-600">İzmir</span>
+          <span class="text-sm text-gray-300">İzmir</span>
           <div class="flex items-center space-x-2">
-            <div class="w-20 bg-gray-200 rounded-full h-2">
+            <div class="w-20 bg-gray-600 rounded-full h-2">
               <div class="bg-green-500 h-2 rounded-full" style="width: 15%"></div>
             </div>
-            <span class="text-sm font-semibold text-gray-800">15%</span>
+            <span class="text-sm font-semibold text-gray-200">15%</span>
           </div>
         </div>
         <div class="flex justify-between items-center">
-          <span class="text-sm text-gray-600">Antalya</span>
+          <span class="text-sm text-gray-300">Antalya</span>
           <div class="flex items-center space-x-2">
-            <div class="w-20 bg-gray-200 rounded-full h-2">
+            <div class="w-20 bg-gray-600 rounded-full h-2">
               <div class="bg-yellow-500 h-2 rounded-full" style="width: 8%"></div>
             </div>
-            <span class="text-sm font-semibold text-gray-800">8%</span>
+            <span class="text-sm font-semibold text-gray-200">8%</span>
           </div>
         </div>
         <div class="flex justify-between items-center">
-          <span class="text-sm text-gray-600">Diğer</span>
+          <span class="text-sm text-gray-300">Diğer</span>
           <div class="flex items-center space-x-2">
-            <div class="w-20 bg-gray-200 rounded-full h-2">
+            <div class="w-20 bg-gray-600 rounded-full h-2">
               <div class="bg-purple-500 h-2 rounded-full" style="width: 4%"></div>
             </div>
-            <span class="text-sm font-semibold text-gray-800">4%</span>
+            <span class="text-sm font-semibold text-gray-200">4%</span>
           </div>
         </div>
       </div>

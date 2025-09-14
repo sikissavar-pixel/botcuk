@@ -57,6 +57,11 @@ class User(db.Model):
     full_name = db.Column(db.String(150), nullable=False)
     email = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(150), nullable=False)
+    role = db.Column(db.String(50), nullable=False, default='user')  # admin, integration_user, user
+    is_unlimited = db.Column(db.Boolean, nullable=False, default=False)  # unlimited usage
+    permissions = db.Column(db.Text, nullable=True)  # JSON string of permissions
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
 
 # Bot ayarları modeli
 class BotSettings(db.Model):

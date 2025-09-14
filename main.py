@@ -137,7 +137,43 @@ def dashboard():
     if not user:
         flash("Lütfen giriş yap!", "error")
         return redirect(url_for("login"))
-    return render_template("dashboard.html", user=user)
+    
+    user_id = user["id"]
+    
+    # Dashboard istatistikleri topla
+    bot_settings = BotSettings.query.filter_by(user_id=user_id).first()
+    saved_texts_count = SavedBotText.query.filter_by(user_id=user_id).count()
+    recent_texts = SavedBotText.query.filter_by(user_id=user_id).order_by(SavedBotText.created_at.desc()).limit(5).all()
+    
+    # Bot konfigürasyon durumu
+    has_purpose = bool(bot_settings and bot_settings.bot_purpose)
+    has_info = bool(bot_settings and bot_settings.bot_title and bot_settings.bot_info_text)
+    
+    # Haftalık metin ekleme grafiği için veri (son 7 gün)
+    from datetime import datetime, timedelta
+    today = datetime.now()
+    week_data = []
+    for i in range(7):
+        date = today - timedelta(days=6-i)
+        day_count = SavedBotText.query.filter_by(user_id=user_id).filter(
+            db.func.date(SavedBotText.created_at) == date.date()
+        ).count()
+        week_data.append({
+            'date': date.strftime('%d.%m'),
+            'count': day_count
+        })
+    
+    dashboard_stats = {
+        'bot_settings_count': 1 if bot_settings else 0,
+        'saved_texts_count': saved_texts_count,
+        'has_purpose': has_purpose,
+        'has_info': has_info,
+        'recent_texts': recent_texts,
+        'week_data': week_data,
+        'completion_percentage': sum([has_purpose, has_info, saved_texts_count > 0]) * 33.33
+    }
+    
+    return render_template("dashboard.html", user=user, stats=dashboard_stats)
 
 @app.route("/logout")
 def logout():

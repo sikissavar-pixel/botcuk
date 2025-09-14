@@ -1,5 +1,430 @@
 {% extends "dashboard.html" %}
 {% block content %}
-<h2 class="text-xl font-bold mb-4">Analytics</h2>
-<p>Analitik veriler burada görünecek.</p>
+<div class="space-y-6">
+  <!-- Başlık ve Zaman Aralığı -->
+  <div class="flex justify-between items-center">
+    <h2 class="text-2xl font-bold text-gray-800">📊 Detaylı Analitik</h2>
+    <div class="flex space-x-3">
+      <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500">
+        <option>Son 30 Gün</option>
+        <option>Son 7 Gün</option>
+        <option>Son 3 Ay</option>
+        <option>Bu Yıl</option>
+      </select>
+      <button class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+        📈 Rapor İndir
+      </button>
+    </div>
+  </div>
+
+  <!-- Ana Metrikler -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-xl shadow-lg">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-blue-100 text-sm">Toplam Görüntüleme</p>
+          <p class="text-3xl font-bold">14,267</p>
+          <p class="text-blue-200 text-xs mt-1">↗️ +12.5% bu ay</p>
+        </div>
+        <div class="bg-blue-400 bg-opacity-30 p-3 rounded-full">
+          <i data-feather="eye" class="w-6 h-6"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-xl shadow-lg">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-green-100 text-sm">Aktif Kullanıcılar</p>
+          <p class="text-3xl font-bold">892</p>
+          <p class="text-green-200 text-xs mt-1">↗️ +8.3% bu hafta</p>
+        </div>
+        <div class="bg-green-400 bg-opacity-30 p-3 rounded-full">
+          <i data-feather="users" class="w-6 h-6"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-6 rounded-xl shadow-lg">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-purple-100 text-sm">Ortalama Seans</p>
+          <p class="text-3xl font-bold">4.7<span class="text-lg">dk</span></p>
+          <p class="text-purple-200 text-xs mt-1">↗️ +3.2% geçen ay</p>
+        </div>
+        <div class="bg-purple-400 bg-opacity-30 p-3 rounded-full">
+          <i data-feather="clock" class="w-6 h-6"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-6 rounded-xl shadow-lg">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-orange-100 text-sm">Dönüşüm Oranı</p>
+          <p class="text-3xl font-bold">23.4%</p>
+          <p class="text-orange-200 text-xs mt-1">↗️ +5.8% bu ay</p>
+        </div>
+        <div class="bg-orange-400 bg-opacity-30 p-3 rounded-full">
+          <i data-feather="trending-up" class="w-6 h-6"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grafikler -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Trafik Grafiği -->
+    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">📈 Günlük Trafik</h3>
+      <div class="h-64">
+        <canvas id="trafficChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Kullanıcı Davranışı -->
+    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">👥 Kullanıcı Aktivitesi</h3>
+      <div class="h-64">
+        <canvas id="userActivityChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- İkinci Satır Grafikler -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Cihaz Türleri -->
+    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">📱 Cihaz Türleri</h3>
+      <div class="h-48">
+        <canvas id="deviceChart"></canvas>
+      </div>
+    </div>
+
+    <!-- En Popüler Saatler -->
+    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">🕐 Popüler Saatler</h3>
+      <div class="h-48">
+        <canvas id="hoursChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Coğrafi Dağılım -->
+    <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800 mb-4">🌍 Şehir Dağılımı</h3>
+      <div class="space-y-3">
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-gray-600">İstanbul</span>
+          <div class="flex items-center space-x-2">
+            <div class="w-20 bg-gray-200 rounded-full h-2">
+              <div class="bg-red-500 h-2 rounded-full" style="width: 45%"></div>
+            </div>
+            <span class="text-sm font-semibold text-gray-800">45%</span>
+          </div>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-gray-600">Ankara</span>
+          <div class="flex items-center space-x-2">
+            <div class="w-20 bg-gray-200 rounded-full h-2">
+              <div class="bg-blue-500 h-2 rounded-full" style="width: 28%"></div>
+            </div>
+            <span class="text-sm font-semibold text-gray-800">28%</span>
+          </div>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-gray-600">İzmir</span>
+          <div class="flex items-center space-x-2">
+            <div class="w-20 bg-gray-200 rounded-full h-2">
+              <div class="bg-green-500 h-2 rounded-full" style="width: 15%"></div>
+            </div>
+            <span class="text-sm font-semibold text-gray-800">15%</span>
+          </div>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-gray-600">Antalya</span>
+          <div class="flex items-center space-x-2">
+            <div class="w-20 bg-gray-200 rounded-full h-2">
+              <div class="bg-yellow-500 h-2 rounded-full" style="width: 8%"></div>
+            </div>
+            <span class="text-sm font-semibold text-gray-800">8%</span>
+          </div>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="text-sm text-gray-600">Diğer</span>
+          <div class="flex items-center space-x-2">
+            <div class="w-20 bg-gray-200 rounded-full h-2">
+              <div class="bg-purple-500 h-2 rounded-full" style="width: 4%"></div>
+            </div>
+            <span class="text-sm font-semibold text-gray-800">4%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Performans Metrikleri -->
+  <div class="bg-white rounded-xl shadow-lg border border-gray-200">
+    <div class="p-6 border-b border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800">⚡ Performans Metrikleri</h3>
+    </div>
+    <div class="p-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-12 h-12 bg-green-100 rounded-full mb-3">
+            <i data-feather="zap" class="w-6 h-6 text-green-600"></i>
+          </div>
+          <h4 class="text-lg font-semibold text-gray-900">Sayfa Yükleme</h4>
+          <p class="text-3xl font-bold text-green-600 mt-1">1.2s</p>
+          <p class="text-sm text-gray-500">Ortalama yükleme süresi</p>
+        </div>
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full mb-3">
+            <i data-feather="server" class="w-6 h-6 text-blue-600"></i>
+          </div>
+          <h4 class="text-lg font-semibold text-gray-900">Sunucu Yanıt</h4>
+          <p class="text-3xl font-bold text-blue-600 mt-1">0.8s</p>
+          <p class="text-sm text-gray-500">API yanıt süresi</p>
+        </div>
+        <div class="text-center">
+          <div class="inline-flex items-center justify-center w-12 h-12 bg-purple-100 rounded-full mb-3">
+            <i data-feather="shield" class="w-6 h-6 text-purple-600"></i>
+          </div>
+          <h4 class="text-lg font-semibold text-gray-900">Uptime</h4>
+          <p class="text-3xl font-bold text-purple-600 mt-1">99.9%</p>
+          <p class="text-sm text-gray-500">Son 30 günde</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- En Popüler İçerikler -->
+  <div class="bg-white rounded-xl shadow-lg border border-gray-200">
+    <div class="p-6 border-b border-gray-200">
+      <h3 class="text-lg font-semibold text-gray-800">🔥 En Popüler İçerikler</h3>
+    </div>
+    <div class="divide-y divide-gray-200">
+      <div class="p-6 flex items-center justify-between hover:bg-gray-50">
+        <div class="flex items-center space-x-4">
+          <div class="w-8 h-8 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-sm">1</div>
+          <div>
+            <h4 class="text-sm font-semibold text-gray-900">Çadır Kurulum Rehberi</h4>
+            <p class="text-sm text-gray-500">Kamp ve outdoor yaşam</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="text-sm font-semibold text-gray-900">2,847 görüntüleme</p>
+          <p class="text-xs text-green-600">↗️ +23.4%</p>
+        </div>
+      </div>
+      <div class="p-6 flex items-center justify-between hover:bg-gray-50">
+        <div class="flex items-center space-x-4">
+          <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">2</div>
+          <div>
+            <h4 class="text-sm font-semibold text-gray-900">Outdoor Fotoğrafçılık İpuçları</h4>
+            <p class="text-sm text-gray-500">Fotoğraf ve teknik</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="text-sm font-semibold text-gray-900">1,923 görüntüleme</p>
+          <p class="text-xs text-green-600">↗️ +18.7%</p>
+        </div>
+      </div>
+      <div class="p-6 flex items-center justify-between hover:bg-gray-50">
+        <div class="flex items-center space-x-4">
+          <div class="w-8 h-8 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+          <div>
+            <h4 class="text-sm font-semibold text-gray-900">Kamp Ateşi Güvenliği</h4>
+            <p class="text-sm text-gray-500">Güvenlik ve önlemler</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="text-sm font-semibold text-gray-900">1,645 görüntüleme</p>
+          <p class="text-xs text-red-600">↘️ -5.2%</p>
+        </div>
+      </div>
+      <div class="p-6 flex items-center justify-between hover:bg-gray-50">
+        <div class="flex items-center space-x-4">
+          <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm">4</div>
+          <div>
+            <h4 class="text-sm font-semibold text-gray-900">Doğa Yürüyüşü Hazırlığı</h4>
+            <p class="text-sm text-gray-500">Spor ve fitness</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <p class="text-sm font-semibold text-gray-900">1,342 görüntüleme</p>
+          <p class="text-xs text-green-600">↗️ +12.1%</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Analytics için özel JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Trafik grafiği
+    const trafficCtx = document.getElementById('trafficChart');
+    if (trafficCtx) {
+        new Chart(trafficCtx, {
+            type: 'line',
+            data: {
+                labels: ['Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt', 'Paz'],
+                datasets: [{
+                    label: 'Günlük Ziyaretçi',
+                    data: [320, 450, 380, 520, 680, 890, 760],
+                    borderColor: 'rgb(59, 130, 246)',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    pointBackgroundColor: 'rgb(59, 130, 246)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Kullanıcı aktivitesi grafiği
+    const userActivityCtx = document.getElementById('userActivityChart');
+    if (userActivityCtx) {
+        new Chart(userActivityCtx, {
+            type: 'bar',
+            data: {
+                labels: ['00-04', '04-08', '08-12', '12-16', '16-20', '20-24'],
+                datasets: [{
+                    label: 'Aktif Kullanıcı',
+                    data: [45, 78, 234, 456, 389, 167],
+                    backgroundColor: [
+                        'rgba(239, 68, 68, 0.8)',
+                        'rgba(245, 101, 101, 0.8)',
+                        'rgba(248, 113, 113, 0.8)',
+                        'rgba(252, 165, 165, 0.8)',
+                        'rgba(254, 202, 202, 0.8)',
+                        'rgba(239, 68, 68, 0.6)'
+                    ],
+                    borderColor: 'rgba(239, 68, 68, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        }
+                    },
+                    x: {
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Cihaz türleri grafiği
+    const deviceCtx = document.getElementById('deviceChart');
+    if (deviceCtx) {
+        new Chart(deviceCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Mobil', 'Desktop', 'Tablet'],
+                datasets: [{
+                    data: [65, 28, 7],
+                    backgroundColor: [
+                        'rgb(34, 197, 94)',
+                        'rgb(59, 130, 246)',
+                        'rgb(168, 85, 247)'
+                    ],
+                    borderWidth: 0,
+                    cutout: '50%'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 15,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Popüler saatler grafiği
+    const hoursCtx = document.getElementById('hoursChart');
+    if (hoursCtx) {
+        new Chart(hoursCtx, {
+            type: 'radar',
+            data: {
+                labels: ['06:00', '09:00', '12:00', '15:00', '18:00', '21:00'],
+                datasets: [{
+                    label: 'Aktivite',
+                    data: [45, 89, 156, 134, 178, 123],
+                    borderColor: 'rgb(168, 85, 247)',
+                    backgroundColor: 'rgba(168, 85, 247, 0.2)',
+                    pointBackgroundColor: 'rgb(168, 85, 247)',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    r: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        }
+                    }
+                }
+            }
+        });
+    }
+});
+</script>
 {% endblock %}

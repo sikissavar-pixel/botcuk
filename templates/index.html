@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>Botcuk Platform - Smart Automation for Businesses</title>
+    <title>Botcuk Platform - İşletmeler için Akıllı Otomasyon</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -42,10 +42,10 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="{{ url_for('index') }}" class="px-3 py-2 rounded-md text-sm font-medium bg-gray-900 text-white">Home</a>
-                        <a href="{{ url_for('pricing') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Pricing</a>
-                        <a href="{{ url_for('register') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Register</a>
-                        <a href="{{ url_for('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Login</a>
+                        <a href="{{ url_for('index') }}" class="px-3 py-2 rounded-md text-sm font-medium bg-gray-900 text-white">Ana Sayfa</a>
+                        <a href="{{ url_for('pricing') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Fiyatlandırma</a>
+                        <a href="{{ url_for('register') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Kayıt Ol</a>
+                        <a href="{{ url_for('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Giriş</a>
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
@@ -62,15 +62,15 @@
         <div class="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8">
             <div class="text-center" data-aos="fade-up">
                 <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
-                    <span class="block">Automate Your Business</span>
-                    <span class="block text-red-500">With AI Conversations</span>
+                    <span class="block">İşinizi Otomatikleştirin</span>
+                    <span class="block text-red-500">Yapay Zeka Konuşmalarıyla</span>
                 </h1>
                 <p class="mt-6 max-w-lg mx-auto text-xl text-gray-300">
-                    Integrate smart bots with WhatsApp, Instagram, JivoChat and more. Let AI handle customer queries 24/7.
+                    WhatsApp, Instagram, JivoChat ve daha fazlasıyla akıllı botları entegre edin. Yapay zekanın müşteri sorgularını 7/24 halletmesine izin verin.
                 </p>
                 <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
                     <a href="{{ url_for('register') }}" class="glow-btn inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-700">
-                        Get Started
+                        Başlayın
                         <i data-feather="arrow-right" class="ml-2"></i>
                     </a>
                     <button onclick="scrollToDemo()" class="inline-flex items-center px-6 py-3 border border-white text-base font-medium rounded-md text-white bg-transparent hover:bg-white hover:text-gray-900 transition-colors">
@@ -87,10 +87,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl" data-aos="fade-up">
-                    Powerful Features for Your Business
+                    İşletmeniz için Güçlü Özellikler
                 </h2>
                 <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Our AI bot learns from past conversations to provide better responses over time.
+                    Yapay zeka botumuz zamanla daha iyi yanıtlar verebilmek için geçmiş konuşmalardan öğrenir.
                 </p>
             </div>
             
@@ -99,9 +99,9 @@
                     <div class="flex items-center justify-center h-12 w-12 rounded-md bg-red-500 text-white">
                         <i data-feather="message-square"></i>
                     </div>
-                    <h3 class="mt-6 text-lg font-medium text-gray-900">Multi-Platform Integration</h3>
+                    <h3 class="mt-6 text-lg font-medium text-gray-900">Çoklu Platform Entegrasyonu</h3>
                     <p class="mt-2 text-base text-gray-500">
-                        Works seamlessly with WhatsApp, Instagram, JivoChat and other messaging platforms.
+                        WhatsApp, Instagram, JivoChat ve diğer mesajlaşma platformlarıyla sorunsuz çalışır.
                     </p>
                 </div>
                 
@@ -109,9 +109,9 @@
                     <div class="flex items-center justify-center h-12 w-12 rounded-md bg-red-500 text-white">
                         <i data-feather="cpu"></i>
                     </div>
-                    <h3 class="mt-6 text-lg font-medium text-gray-900">Self-Learning AI</h3>
+                    <h3 class="mt-6 text-lg font-medium text-gray-900">Öz-Öğrenen Yapay Zeka</h3>
                     <p class="mt-2 text-base text-gray-500">
-                        Our bot improves itself by analyzing past conversations and customer interactions.
+                        Botumuz geçmiş konuşmaları ve müşteri etkileşimlerini analiz ederek kendini geliştirir.
                     </p>
                 </div>
                 
@@ -119,9 +119,9 @@
                     <div class="flex items-center justify-center h-12 w-12 rounded-md bg-red-500 text-white">
                         <i data-feather="settings"></i>
                     </div>
-                    <h3 class="mt-6 text-lg font-medium text-gray-900">Easy Configuration</h3>
+                    <h3 class="mt-6 text-lg font-medium text-gray-900">Kolay Yapılandırma</h3>
                     <p class="mt-2 text-base text-gray-500">
-                        Simple interface to define topics and responses. No coding required.
+                        Konuları ve yanıtları tanımlamak için basit arayüz. Kodlama gerekmez.
                     </p>
                 </div>
             </div>
@@ -219,10 +219,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="lg:text-center">
                 <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl" data-aos="fade-up">
-                    How It Works
+                    Nasıl Çalışır
                 </h2>
                 <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Set up your AI bot in just a few simple steps
+                    Yapay zeka botunuzu birkaç basit adımda kurun
                 </p>
             </div>
             
@@ -233,9 +233,9 @@
                             <span class="text-white font-bold">1</span>
                         </div>
                         <div class="ml-8">
-                            <h3 class="text-lg font-medium text-gray-900">Define Topics</h3>
+                            <h3 class="text-lg font-medium text-gray-900">Konuları Tanımlayın</h3>
                             <p class="mt-2 text-base text-gray-500">
-                                Create topics like "Tents" and define related questions and responses.
+                                "Çadır" gibi konular oluşturun ve ilgili sorular ve yanıtlar tanımlayın.
                             </p>
                         </div>
                     </div>
@@ -245,9 +245,9 @@
                             <span class="text-white font-bold">2</span>
                         </div>
                         <div class="ml-8">
-                            <h3 class="text-lg font-medium text-gray-900">Connect Platforms</h3>
+                            <h3 class="text-lg font-medium text-gray-900">Platformları Bağlayın</h3>
                             <p class="mt-2 text-base text-gray-500">
-                                Integrate with WhatsApp, Instagram, JivoChat or other messaging apps.
+                                WhatsApp, Instagram, JivoChat veya diğer mesajlaşma uygulamalarıyla entegre olun.
                             </p>
                         </div>
                     </div>
@@ -257,9 +257,9 @@
                             <span class="text-white font-bold">3</span>
                         </div>
                         <div class="ml-8">
-                            <h3 class="text-lg font-medium text-gray-900">Let AI Learn</h3>
+                            <h3 class="text-lg font-medium text-gray-900">Yapay Zeka'nın Öğrenmesine İzin Verin</h3>
                             <p class="mt-2 text-base text-gray-500">
-                                The bot improves itself by analyzing past conversations.
+                                Bot geçmiş konuşmaları analiz ederek kendini geliştirir.
                             </p>
                         </div>
                     </div>
@@ -268,7 +268,7 @@
             
             <div class="mt-16 text-center">
                 <a href="{{ url_for('register') }}" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gray-800">
-                    Start Free Trial
+                    Ücretsiz Deneme Başlatın
                     <i data-feather="arrow-right" class="ml-2"></i>
                 </a>
             </div>
@@ -280,41 +280,41 @@
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Product</h3>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Ürün</h3>
                     <ul class="mt-4 space-y-4">
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Features</a></li>
-                        <li><a href="{{ url_for('pricing') }}" class="text-base text-gray-300 hover:text-white">Pricing</a></li>
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Integrations</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Özellikler</a></li>
+                        <li><a href="{{ url_for('pricing') }}" class="text-base text-gray-300 hover:text-white">Fiyatlandırma</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Entegrasyonlar</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Şirket</h3>
                     <ul class="mt-4 space-y-4">
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">About</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Hakkımızda</a></li>
                         <li><a href="#" class="text-base text-gray-300 hover:text-white">Blog</a></li>
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Kariyer</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Resources</h3>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Kaynaklar</h3>
                     <ul class="mt-4 space-y-4">
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Documentation</a></li>
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Guides</a></li>
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">API Status</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Dokümantasyon</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Rehberler</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">API Durumu</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Yasal</h3>
                     <ul class="mt-4 space-y-4">
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Privacy</a></li>
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Terms</a></li>
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Cookie Policy</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Gizlilik</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Şartlar</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Çerez Politikası</a></li>
                     </ul>
                 </div>
             </div>
             <div class="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between">
                 <p class="text-base text-gray-400">
-                    &copy; 2023 Botcuk Platform. All rights reserved.
+                    &copy; 2023 Botcuk Platform. Tüm hakları saklıdır.
                 </p>
                 <div class="mt-4 md:mt-0 flex space-x-6">
                     <a href="#" class="text-gray-400 hover:text-white">

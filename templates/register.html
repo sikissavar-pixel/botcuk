@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Botcuk Platform</title>
+    <title>Kayıt Ol - Botcuk Platform</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -32,10 +32,10 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="{{ url_for('index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Home</a>
-                        <a href="{{ url_for('pricing') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Pricing</a>
-                        <a href="{{ url_for('register') }}" class="px-3 py-2 rounded-md text-sm font-medium bg-gray-900 text-white">Register</a>
-                        <a href="{{ url_for('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Login</a>
+                        <a href="{{ url_for('index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Ana Sayfa</a>
+                        <a href="{{ url_for('pricing') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Fiyatlandırma</a>
+                        <a href="{{ url_for('register') }}" class="px-3 py-2 rounded-md text-sm font-medium bg-gray-900 text-white">Kayıt Ol</a>
+                        <a href="{{ url_for('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Giriş</a>
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
@@ -53,10 +53,10 @@
             <div class="text-center">
                 <i data-feather="cpu" class="mx-auto h-12 w-12 text-red-500"></i>
                 <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
-                    Create your account
+                    Hesabınızı oluşturun
                 </h2>
                 <p class="mt-2 text-sm text-gray-600">
-                    Or <a href="{{ url_for('login') }}" class="font-medium text-red-600 hover:text-red-500">sign in to your existing account</a>
+                    Veya <a href="{{ url_for('login') }}" class="font-medium text-red-600 hover:text-red-500">mevcut hesabınızla giriş yapın</a>
                 </p>
             </div>
             <!-- 🔥 BURASI DÜZELTİLDİ -->
@@ -65,27 +65,27 @@
                 <input type="hidden" name="remember" value="true">
                 <div class="rounded-md shadow-sm space-y-4">
                     <div>
-                        <label for="full-name" class="sr-only">Full Name</label>
-                        <input id="full-name" name="full-name" type="text" required class="form-input appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" placeholder="Full Name">
+                        <label for="full-name" class="sr-only">Ad Soyad</label>
+                        <input id="full-name" name="full-name" type="text" required class="form-input appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" placeholder="Ad Soyad">
                     </div>
                     <div>
-                        <label for="email-address" class="sr-only">Email address</label>
-                        <input id="email-address" name="email" type="email" autocomplete="email" required class="form-input appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" placeholder="Email address">
+                        <label for="email-address" class="sr-only">E-posta adresi</label>
+                        <input id="email-address" name="email" type="email" autocomplete="email" required class="form-input appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" placeholder="E-posta adresi">
                     </div>
                     <div>
-                        <label for="password" class="sr-only">Password</label>
-                        <input id="password" name="password" type="password" autocomplete="current-password" required class="form-input appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" placeholder="Password">
+                        <label for="password" class="sr-only">Şifre</label>
+                        <input id="password" name="password" type="password" autocomplete="current-password" required class="form-input appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" placeholder="Şifre">
                     </div>
                     <div>
-                        <label for="confirm-password" class="sr-only">Confirm Password</label>
-                        <input id="confirm-password" name="confirm-password" type="password" required class="form-input appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" placeholder="Confirm Password">
+                        <label for="confirm-password" class="sr-only">Şifreyi Onayla</label>
+                        <input id="confirm-password" name="confirm-password" type="password" required class="form-input appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" placeholder="Şifreyi Onayla">
                     </div>
                 </div>
 
                 <div class="flex items-center">
                     <input id="terms" name="terms" type="checkbox" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
                     <label for="terms" class="ml-2 block text-sm text-gray-900">
-                        I agree to the <a href="#" class="font-medium text-red-600 hover:text-red-500">Terms</a> and <a href="#" class="font-medium text-red-600 hover:text-red-500">Privacy Policy</a>
+                        <a href="#" class="font-medium text-red-600 hover:text-red-500">Şartlar</a> ve <a href="#" class="font-medium text-red-600 hover:text-red-500">Gizlilik Politikası</a>nı kabul ediyorum
                     </label>
                 </div>
 
@@ -94,7 +94,7 @@
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                             <i data-feather="user-plus" class="h-5 w-5 text-red-300 group-hover:text-red-200"></i>
                         </span>
-                        Register
+                        Kayıt Ol
                     </button>
                 </div>
             </form>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="relative flex justify-center text-sm">
                         <span class="px-2 bg-white text-gray-500">
-                            Or continue with
+                            Veya şununla devam edin
                         </span>
                     </div>
                 </div>
@@ -156,7 +156,7 @@
                     <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Product</h3>
                     <ul class="mt-4 space-y-4">
                         <li><a href="#" class="text-base text-gray-300 hover:text-white">Features</a></li>
-                        <li><a href="{{ url_for('pricing') }}" class="text-base text-gray-300 hover:text-white">Pricing</a></li>
+                        <li><a href="{{ url_for('pricing') }}" class="text-base text-gray-300 hover:text-white">Fiyatlandırma</a></li>
                         <li><a href="#" class="text-base text-gray-300 hover:text-white">Integrations</a></li>
                     </ul>
                 </div>

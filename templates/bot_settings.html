@@ -3,31 +3,36 @@
 <div class="bg-gray-800 shadow rounded-lg">
     <!-- Tab Navigation -->
     <div class="border-b border-gray-600">
-        <nav class="-mb-px flex space-x-8">
+        <nav class="-mb-px flex flex-wrap sm:space-x-8 space-x-2">
             <button onclick="showTab('purpose')" id="purpose-tab" 
-                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                <i data-feather="target" class="inline-block w-4 h-4 mr-2"></i>
-                Bot Amacı
+                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                <i data-feather="target" class="inline-block w-4 h-4 mr-1 sm:mr-2"></i>
+                <span class="hidden sm:inline">Bot Amacı</span>
+                <span class="sm:hidden">Amaç</span>
             </button>
             <button onclick="showTab('info')" id="info-tab" 
-                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                <i data-feather="settings" class="inline-block w-4 h-4 mr-2"></i>
-                Bot Bilgileri
+                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                <i data-feather="settings" class="inline-block w-4 h-4 mr-1 sm:mr-2"></i>
+                <span class="hidden sm:inline">Bot Bilgileri</span>
+                <span class="sm:hidden">Bilgi</span>
             </button>
             <button onclick="showTab('saved')" id="saved-tab" 
-                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                <i data-feather="file-text" class="inline-block w-4 h-4 mr-2"></i>
-                Kaydedilen Metinler
+                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                <i data-feather="file-text" class="inline-block w-4 h-4 mr-1 sm:mr-2"></i>
+                <span class="hidden sm:inline">Kaydedilen Metinler</span>
+                <span class="sm:hidden">Metinler</span>
             </button>
             <button onclick="showTab('upload')" id="upload-tab" 
-                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                <i data-feather="upload" class="inline-block w-4 h-4 mr-2"></i>
-                Dosya Yükle
+                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                <i data-feather="upload" class="inline-block w-4 h-4 mr-1 sm:mr-2"></i>
+                <span class="hidden sm:inline">Dosya Yükle</span>
+                <span class="sm:hidden">Yükle</span>
             </button>
             <button onclick="showTab('chat')" id="chat-tab" 
-                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                <i data-feather="message-circle" class="inline-block w-4 h-4 mr-2"></i>
-                Bot Testi
+                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-xs sm:text-sm">
+                <i data-feather="message-circle" class="inline-block w-4 h-4 mr-1 sm:mr-2"></i>
+                <span class="hidden sm:inline">Bot Testi</span>
+                <span class="sm:hidden">Test</span>
             </button>
         </nav>
     </div>

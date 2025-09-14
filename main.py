@@ -5,6 +5,7 @@ import requests
 import os
 from dotenv import load_dotenv
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 import sys
 from openai_service import chat_with_sahilkamp_bot
 
@@ -32,6 +33,14 @@ if not secret_key:
         print("WARNING: Using development secret key. Set FLASK_SECRET_KEY for production.")
 
 app.secret_key = secret_key
+
+# Configure file upload settings
+app.config['MAX_CONTENT_LENGTH'] = 5 * 1024 * 1024  # 5MB max file size
+app.config['UPLOAD_FOLDER'] = 'static/uploads'
+ALLOWED_EXTENSIONS = {'txt'}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 # Initialize CSRF protection
 csrf = CSRFProtect(app)
@@ -300,6 +309,37 @@ def bot_settings():
                 db.session.commit()
                 flash("Metin başarıyla kaydedildi!", "success")
         
+        # Sekme 4: Dosya Yükleme  
+        elif tab == "upload_file":
+            if 'txt_file' not in request.files:
+                flash("Dosya seçilmedi!", "error")
+            else:
+                file = request.files['txt_file']
+                file_title = request.form.get("file_title")
+                file_keywords = request.form.get("file_keywords")
+                
+                if file and file.filename != '' and allowed_file(file.filename) and file_title:
+                    try:
+                        # Read file content
+                        file_content = file.read().decode('utf-8')
+                        
+                        # Save to database
+                        saved_text = SavedBotText()
+                        saved_text.user_id = user_id
+                        saved_text.title = file_title
+                        saved_text.content = file_content
+                        saved_text.keywords = file_keywords
+                        db.session.add(saved_text)
+                        db.session.commit()
+                        
+                        flash(f"'{file.filename}' dosyası başarıyla yüklendi ve kayıt altına alındı!", "success")
+                    except UnicodeDecodeError:
+                        flash("Dosya UTF-8 formatında değil. Lütfen farklı bir dosya deneyin.", "error")
+                    except Exception as e:
+                        flash("Dosya yüklenirken bir hata oluştu.", "error")
+                else:
+                    flash("Geçerli bir .txt dosyası ve başlık girmelisiniz!", "error")
+        
         return redirect(url_for("bot_settings"))
     
     # Mevcut verileri getir
@@ -332,6 +372,62 @@ def billing():
     if not user:
         return redirect(url_for("login"))
     return render_template("billing.html", user=user)
+
+@app.route("/api/bot-chat", methods=["POST"])
+@csrf.exempt
+def bot_chat():
+    user = session.get("user")
+    if not user:
+        return jsonify({"error": "Oturum açmanız gerekli"}), 401
+    
+    try:
+        data = request.get_json()
+        user_message = data.get("message", "").strip()
+        
+        if not user_message:
+            return jsonify({"error": "Mesaj boş olamaz"}), 400
+        
+        user_id = user["id"]
+        
+        # Get user's bot settings and saved texts
+        bot_settings = BotSettings.query.filter_by(user_id=user_id).first()
+        saved_texts = SavedBotText.query.filter_by(user_id=user_id).all()
+        
+        # Create context for the bot
+        context = []
+        
+        if bot_settings:
+            if bot_settings.bot_purpose:
+                context.append(f"Bot Amacı: {bot_settings.bot_purpose}")
+            if bot_settings.bot_title and bot_settings.bot_info_text:
+                context.append(f"{bot_settings.bot_title}: {bot_settings.bot_info_text}")
+        
+        # Add saved texts that might be relevant
+        for text in saved_texts:
+            if text.keywords:
+                keywords = [k.strip().lower() for k in text.keywords.split(',')]
+                if any(keyword in user_message.lower() for keyword in keywords):
+                    context.append(f"{text.title}: {text.content}")
+        
+        # If no specific context found, add all saved texts as general knowledge
+        if not context and saved_texts:
+            context = [f"{text.title}: {text.content}" for text in saved_texts[:3]]  # Limit to first 3
+        
+        # Create prompt for the bot
+        system_prompt = f"""Sen bir yardımcı bot'sun. Kullanıcının aşağıdaki bilgilerine göre sorularını yanıtla:
+
+{chr(10).join(context) if context else "Henüz özel bilgi girilmemiş."}
+
+Kısa, yararlı ve dostça yanıtlar ver. Türkçe yanıt ver."""
+        
+        # Use OpenAI service to get response
+        bot_response = chat_with_sahilkamp_bot(user_message, system_prompt)
+        
+        return jsonify({"reply": bot_response})
+        
+    except Exception as e:
+        return jsonify({"error": "Bot yanıt verirken hata oluştu. Lütfen tekrar deneyin."}), 500
+
 
 @app.route("/pricing")
 def pricing():

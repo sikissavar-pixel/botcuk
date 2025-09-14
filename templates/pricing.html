@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing - Botcuk Platform</title>
+    <title>Fiyatlandırma - Botcuk Platform</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -41,10 +41,10 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="{{ url_for('index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Home</a>
-                        <a href="{{ url_for('pricing') }}" class="px-3 py-2 rounded-md text-sm font-medium bg-gray-900 text-white">Pricing</a>
-                        <a href="{{ url_for('register') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Register</a>
-                        <a href="{{ url_for('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Login</a>
+                        <a href="{{ url_for('index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Ana Sayfa</a>
+                        <a href="{{ url_for('pricing') }}" class="px-3 py-2 rounded-md text-sm font-medium bg-gray-900 text-white">Fiyatlandırma</a>
+                        <a href="{{ url_for('register') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Kayıt Ol</a>
+                        <a href="{{ url_for('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Giriş</a>
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
@@ -61,142 +61,142 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl" data-aos="fade-up">
-                    Simple, Transparent Pricing
+                    Basit, Şeffaf Fiyatlandırma
                 </h2>
                 <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    No hidden fees. Start with a free trial and upgrade when you're ready.
+                    Gizli ücret yok. Ücretsiz deneme ile başlayın ve hazır olduğunuzda yükseltme yapın.
                 </p>
             </div>
             
             <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
                 <!-- Starter -->
                 <div class="pricing-card bg-gray-50 p-8 rounded-lg transition-all duration-300 relative" data-aos="fade-up" data-aos-delay="200">
-                    <h3 class="text-lg font-medium text-gray-900">Starter</h3>
+                    <h3 class="text-lg font-medium text-gray-900">Başlangıç</h3>
                     <p class="mt-2 text-base text-gray-500">
-                        Perfect for small businesses getting started
+                        Küçük işletmeler için mükemmel başlangıç
                     </p>
                     <div class="mt-6">
                         <span class="text-4xl font-extrabold text-gray-900">$19</span>
-                        <span class="text-base font-medium text-gray-500">/month</span>
+                        <span class="text-base font-medium text-gray-500">/ay</span>
                     </div>
                     <ul class="mt-8 space-y-4">
                         <li class="flex items-start">
                             <i data-feather="check" class="h-5 w-5 text-green-500"></i>
-                            <span class="ml-3 text-base text-gray-700">1 AI Bot</span>
+                            <span class="ml-3 text-base text-gray-700">1 Yapay Zeka Botu</span>
                         </li>
                         <li class="flex items-start">
                             <i data-feather="check" class="h-5 w-5 text-green-500"></i>
-                            <span class="ml-3 text-base text-gray-700">500 conversations/month</span>
+                            <span class="ml-3 text-base text-gray-700">Ayda 500 konuşma</span>
                         </li>
                         <li class="flex items-start">
                             <i data-feather="check" class="h-5 w-5 text-green-500"></i>
-                            <span class="ml-3 text-base text-gray-700">WhatsApp Integration</span>
+                            <span class="ml-3 text-base text-gray-700">WhatsApp Entegrasyonu</span>
                         </li>
                         <li class="flex items-start">
                             <i data-feather="x" class="h-5 w-5 text-gray-400"></i>
-                            <span class="ml-3 text-base text-gray-500">Instagram Integration</span>
+                            <span class="ml-3 text-base text-gray-500">Instagram Entegrasyonu</span>
                         </li>
                         <li class="flex items-start">
                             <i data-feather="x" class="h-5 w-5 text-gray-400"></i>
-                            <span class="ml-3 text-base text-gray-500">JivoChat Integration</span>
+                            <span class="ml-3 text-base text-gray-500">JivoChat Entegrasyonu</span>
                         </li>
                     </ul>
                     <div class="mt-8">
                         <a href="{{ url_for('register') }}" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-800 hover:bg-gray-700">
-                            Get Started
+                            Başlayın
                         </a>
                     </div>
                 </div>
                 
                 <!-- Business -->
                 <div class="pricing-card bg-gray-50 p-8 rounded-lg transition-all duration-300 relative border-2 border-red-500" data-aos="fade-up" data-aos-delay="300">
-                    <div class="popular-badge">MOST POPULAR</div>
-                    <h3 class="text-lg font-medium text-gray-900">Business</h3>
+                    <div class="popular-badge">EN POPÜLER</div>
+                    <h3 class="text-lg font-medium text-gray-900">İşletme</h3>
                     <p class="mt-2 text-base text-gray-500">
-                        For growing businesses with multiple channels
+                        Birden fazla kanala sahip büyüyen işletmeler için
                     </p>
                     <div class="mt-6">
                         <span class="text-4xl font-extrabold text-gray-900">$49</span>
-                        <span class="text-base font-medium text-gray-500">/month</span>
+                        <span class="text-base font-medium text-gray-500">/ay</span>
                     </div>
                     <ul class="mt-8 space-y-4">
                         <li class="flex items-start">
                             <i data-feather="check" class="h-5 w-5 text-green-500"></i>
-                            <span class="ml-3 text-base text-gray-700">3 AI Bots</span>
+                            <span class="ml-3 text-base text-gray-700">3 Yapay Zeka Botu</span>
                         </li>
                         <li class="flex items-start">
                             <i data-feather="check" class="h-5 w-5 text-green-500"></i>
-                            <span class="ml-3 text-base text-gray-700">2000 conversations/month</span>
+                            <span class="ml-3 text-base text-gray-700">Ayda 2,000 konuşma</span>
                         </li>
                         <li class="flex items-start">
                             <i data-feather="check" class="h-5 w-5 text-green-500"></i>
-                            <span class="ml-3 text-base text-gray-700">WhatsApp Integration</span>
+                            <span class="ml-3 text-base text-gray-700">WhatsApp Entegrasyonu</span>
                         </li>
                         <li class="flex items-start">
                             <i data-feather="check" class="h-5 w-5 text-green-500"></i>
-                            <span class="ml-3 text-base text-gray-700">Instagram Integration</span>
+                            <span class="ml-3 text-base text-gray-700">Instagram Entegrasyonu</span>
                         </li>
                         <li class="flex items-start">
                             <i data-feather="check" class="h-5 w-5 text-green-500"></i>
-                            <span class="ml-3 text-base text-gray-700">JivoChat Integration</span>
+                            <span class="ml-3 text-base text-gray-700">JivoChat Entegrasyonu</span>
                         </li>
                     </ul>
                     <div class="mt-8">
                         <a href="{{ url_for('register') }}" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700">
-                            Get Started
+                            Başlayın
                         </a>
                     </div>
                 </div>
                 
                 <!-- Enterprise -->
                 <div class="pricing-card bg-gray-50 p-8 rounded-lg transition-all duration-300 relative" data-aos="fade-up" data-aos-delay="400">
-                    <h3 class="text-lg font-medium text-gray-900">Enterprise</h3>
+                    <h3 class="text-lg font-medium text-gray-900">Kurumsal</h3>
                     <p class="mt-2 text-base text-gray-500">
-                        For large businesses with custom needs
+                        Özel ihtiyaçları olan büyük işletmeler için
                     </p>
                     <div class="mt-6">
                         <span class="text-4xl font-extrabold text-gray-900">$99</span>
-                        <span class="text-base font-medium text-gray-500">/month</span>
+                        <span class="text-base font-medium text-gray-500">/ay</span>
                     </div>
                     <ul class="mt-8 space-y-4">
                         <li class="flex items-start">
                             <i data-feather="check" class="h-5 w-5 text-green-500"></i>
-                            <span class="ml-3 text-base text-gray-700">Unlimited AI Bots</span>
+                            <span class="ml-3 text-base text-gray-700">Sınırsız Yapay Zeka Botu</span>
                         </li>
                         <li class="flex items-start">
                             <i data-feather="check" class="h-5 w-5 text-green-500"></i>
-                            <span class="ml-3 text-base text-gray-700">10,000 conversations/month</span>
+                            <span class="ml-3 text-base text-gray-700">Ayda 10,000 konuşma</span>
                         </li>
                         <li class="flex items-start">
                             <i data-feather="check" class="h-5 w-5 text-green-500"></i>
-                            <span class="ml-3 text-base text-gray-700">All Platform Integrations</span>
+                            <span class="ml-3 text-base text-gray-700">Tüm Platform Entegrasyonları</span>
                         </li>
                         <li class="flex items-start">
                             <i data-feather="check" class="h-5 w-5 text-green-500"></i>
-                            <span class="ml-3 text-base text-gray-700">Priority Support</span>
+                            <span class="ml-3 text-base text-gray-700">Öncelikli Destek</span>
                         </li>
                         <li class="flex items-start">
                             <i data-feather="check" class="h-5 w-5 text-green-500"></i>
-                            <span class="ml-3 text-base text-gray-700">Custom Training</span>
+                            <span class="ml-3 text-base text-gray-700">Özel Eğitim</span>
                         </li>
                     </ul>
                     <div class="mt-8">
                         <a href="{{ url_for('register') }}" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-800 hover:bg-gray-700">
-                            Get Started
+                            Başlayın
                         </a>
                     </div>
                 </div>
             </div>
             
             <div class="mt-16 bg-gray-50 p-8 rounded-lg">
-                <h3 class="text-lg font-medium text-center text-gray-900">Not sure which plan is right for you?</h3>
+                <h3 class="text-lg font-medium text-center text-gray-900">Hangi planın sizin için uygun olduğundan emin değil misiniz?</h3>
                 <p class="mt-2 text-center text-base text-gray-500">
-                    Contact our sales team and we'll help you find the right solution.
+                    Satış ekibimizle iletişime geçin, doğru çözümü bulmanıza yardımcı olalım.
                 </p>
                 <div class="mt-6 text-center">
                     <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gray-800">
                         <i data-feather="mail" class="mr-2"></i>
-                        Contact Sales
+                        Satış ile İletişime Geçin
                     </a>
                 </div>
             </div>
@@ -208,41 +208,41 @@
         <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Product</h3>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Ürün</h3>
                     <ul class="mt-4 space-y-4">
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Features</a></li>
-                        <li><a href="{{ url_for('pricing') }}" class="text-base text-gray-300 hover:text-white">Pricing</a></li>
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Integrations</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Özellikler</a></li>
+                        <li><a href="{{ url_for('pricing') }}" class="text-base text-gray-300 hover:text-white">Fiyatlandırma</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Entegrasyonlar</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Şirket</h3>
                     <ul class="mt-4 space-y-4">
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">About</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Hakkımızda</a></li>
                         <li><a href="#" class="text-base text-gray-300 hover:text-white">Blog</a></li>
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Careers</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Kariyer</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Resources</h3>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Kaynaklar</h3>
                     <ul class="mt-4 space-y-4">
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Documentation</a></li>
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Guides</a></li>
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">API Status</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Dokümantasyon</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Rehberler</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">API Durumu</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Yasal</h3>
                     <ul class="mt-4 space-y-4">
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Privacy</a></li>
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Terms</a></li>
-                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Cookie Policy</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Gizlilik</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Şartlar</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Çerez Politikası</a></li>
                     </ul>
                 </div>
             </div>
             <div class="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between">
                 <p class="text-base text-gray-400">
-                    &copy; 2023 Botcuk Platform. All rights reserved.
+                    &copy; 2023 Botcuk Platform. Tüm hakları saklıdır.
                 </p>
                 <div class="mt-4 md:mt-0 flex space-x-6">
                     <a href="#" class="text-gray-400 hover:text-white">

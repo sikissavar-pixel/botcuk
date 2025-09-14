@@ -19,6 +19,16 @@
                 <i data-feather="file-text" class="inline-block w-4 h-4 mr-2"></i>
                 Kaydedilen Metinler
             </button>
+            <button onclick="showTab('upload')" id="upload-tab" 
+                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                <i data-feather="upload" class="inline-block w-4 h-4 mr-2"></i>
+                Dosya Yükle
+            </button>
+            <button onclick="showTab('chat')" id="chat-tab" 
+                    class="tab-button border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-500 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
+                <i data-feather="message-circle" class="inline-block w-4 h-4 mr-2"></i>
+                Bot Testi
+            </button>
         </nav>
     </div>
 
@@ -198,6 +208,121 @@
                 </div>
             </div>
         </div>
+
+        <!-- Sekme 4: Dosya Yükleme -->
+        <div id="upload-content" class="tab-content hidden">
+            <div class="max-w-2xl">
+                <h3 class="text-lg font-medium text-gray-100 mb-4">Metin Dosyası Yükleme</h3>
+                <p class="text-sm text-gray-300 mb-6">
+                    Bot içeriği için .txt dosyalarını direkt yükleyebilirsiniz. Dosya içeriği otomatik olarak bot metinlerine eklenecektir.
+                </p>
+                
+                <form method="POST" action="{{ url_for('bot_settings') }}" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <input type="hidden" name="tab" value="upload_file">
+                    
+                    <div class="mb-4">
+                        <label for="file_title" class="block text-sm font-medium text-gray-200 mb-2">
+                            Dosya Başlığı
+                        </label>
+                        <input type="text" id="file_title" name="file_title" 
+                               class="block w-full border-gray-600 bg-gray-700 text-gray-100 placeholder-gray-400 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                               placeholder="Örnek: Ürün Katalog Bilgileri" required>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="txt_file" class="block text-sm font-medium text-gray-200 mb-2">
+                            .txt Dosyası Seçin
+                        </label>
+                        <input type="file" id="txt_file" name="txt_file" accept=".txt" 
+                               class="block w-full text-sm text-gray-300 border border-gray-600 rounded-md cursor-pointer bg-gray-700 focus:outline-none focus:ring-red-500 focus:border-red-500"
+                               required>
+                        <p class="mt-2 text-xs text-gray-400">Sadece .txt dosyaları kabul edilir. Maksimum dosya boyutu: 5MB</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="file_keywords" class="block text-sm font-medium text-gray-200 mb-2">
+                            Anahtar Kelimeler <span class="text-gray-400">(virgülle ayırın)</span>
+                        </label>
+                        <input type="text" id="file_keywords" name="file_keywords" 
+                               class="block w-full border-gray-600 bg-gray-700 text-gray-100 placeholder-gray-400 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                               placeholder="ürün, katalog, bilgi, özelliker">
+                    </div>
+                    
+                    <button type="submit" 
+                            class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                        <i data-feather="upload" class="w-4 h-4 mr-2"></i>
+                        Dosyayı Yükle
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Sekme 5: Bot Testi Sohbet Alanı -->
+        <div id="chat-content" class="tab-content hidden">
+            <div class="max-w-4xl">
+                <h3 class="text-lg font-medium text-gray-100 mb-4">Bot Test Sohbeti</h3>
+                <p class="text-sm text-gray-300 mb-6">
+                    Botunuzu test edin ve ayarlarınızın nasıl çalıştığını görün. Buradan botunuzla konuşarak yanıtlarını kontrol edebilirsiniz.
+                </p>
+
+                <!-- Sohbet Alanı -->
+                <div class="bg-gray-700 rounded-lg p-4 mb-4">
+                    <div id="chat-container" class="h-96 overflow-y-auto bg-gray-800 rounded-lg p-4 mb-4 space-y-3">
+                        <div class="flex items-start space-x-3">
+                            <div class="flex-shrink-0">
+                                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                                    <i data-feather="cpu" class="w-4 h-4 text-white"></i>
+                                </div>
+                            </div>
+                            <div class="flex-1">
+                                <div class="bg-gray-600 rounded-lg p-3">
+                                    <p class="text-sm text-gray-100">Merhaba! Ben sizin botunuzum. Bana herhangi bir soru sorabilirsiniz ve ayarlarınızı test edebilirsiniz.</p>
+                                </div>
+                                <span class="text-xs text-gray-400 mt-1">Bot • şimdi</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Mesaj Gönderme Alanı -->
+                    <div class="flex space-x-3">
+                        <input type="text" id="chat-input" 
+                               class="flex-1 border-gray-600 bg-gray-800 text-gray-100 placeholder-gray-400 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                               placeholder="Botunuza bir mesaj yazın..." 
+                               onkeypress="if(event.key==='Enter') sendTestMessage()">
+                        <button onclick="sendTestMessage()" 
+                                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            <i data-feather="send" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Loading State -->
+                    <div id="chat-loading" class="hidden flex items-center justify-center py-4">
+                        <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-red-500"></div>
+                        <span class="ml-2 text-sm text-gray-400">Bot yanıt yazıyor...</span>
+                    </div>
+                </div>
+                
+                <!-- Bot Bilgi Paneli -->
+                <div class="bg-gray-800 rounded-lg p-4">
+                    <h4 class="text-md font-medium text-gray-100 mb-3">Bot Durumu</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                        <div class="text-center">
+                            <div class="text-lg font-semibold text-green-400">{{ saved_texts|length if saved_texts else 0 }}</div>
+                            <div class="text-gray-400">Kayıtlı Metin</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-lg font-semibold text-blue-400">{% if bot_settings and bot_settings.bot_purpose %}Aktif{% else %}Eksik{% endif %}</div>
+                            <div class="text-gray-400">Bot Amacı</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-lg font-semibold text-purple-400">{% if bot_settings and bot_settings.bot_title %}Aktif{% else %}Eksik{% endif %}</div>
+                            <div class="text-gray-400">Bot Bilgileri</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -221,6 +346,104 @@ function showTab(tabName) {
     const activeTab = document.getElementById(tabName + '-tab');
     activeTab.classList.remove('border-transparent', 'text-gray-500');
     activeTab.classList.add('border-red-500', 'text-red-600');
+}
+
+// Chat functionality
+async function sendTestMessage() {
+    const input = document.getElementById('chat-input');
+    const message = input.value.trim();
+    if (!message) return;
+
+    const chatContainer = document.getElementById('chat-container');
+    const loadingElement = document.getElementById('chat-loading');
+    
+    // Add user message
+    const userMessageHtml = `
+        <div class="flex items-start space-x-3">
+            <div class="flex-shrink-0">
+                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                    <i data-feather="user" class="w-4 h-4 text-white"></i>
+                </div>
+            </div>
+            <div class="flex-1">
+                <div class="bg-blue-600 rounded-lg p-3">
+                    <p class="text-sm text-white">${message}</p>
+                </div>
+                <span class="text-xs text-gray-400 mt-1">Sen • şimdi</span>
+            </div>
+        </div>
+    `;
+    
+    chatContainer.insertAdjacentHTML('beforeend', userMessageHtml);
+    input.value = '';
+    
+    // Show loading
+    loadingElement.classList.remove('hidden');
+    
+    // Scroll to bottom
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+    
+    try {
+        const response = await fetch('/api/bot-chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': document.querySelector('input[name="csrf_token"]').value
+            },
+            body: JSON.stringify({ message: message })
+        });
+        
+        const data = await response.json();
+        
+        // Hide loading
+        loadingElement.classList.add('hidden');
+        
+        // Add bot response
+        const botMessageHtml = `
+            <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0">
+                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                        <i data-feather="cpu" class="w-4 h-4 text-white"></i>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="bg-gray-600 rounded-lg p-3">
+                        <p class="text-sm text-gray-100">${data.reply || data.error}</p>
+                    </div>
+                    <span class="text-xs text-gray-400 mt-1">Bot • şimdi</span>
+                </div>
+            </div>
+        `;
+        
+        chatContainer.insertAdjacentHTML('beforeend', botMessageHtml);
+        
+        // Re-initialize feather icons and scroll to bottom
+        feather.replace();
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+        
+    } catch (error) {
+        loadingElement.classList.add('hidden');
+        
+        const errorMessageHtml = `
+            <div class="flex items-start space-x-3">
+                <div class="flex-shrink-0">
+                    <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center">
+                        <i data-feather="alert-circle" class="w-4 h-4 text-white"></i>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <div class="bg-red-600 rounded-lg p-3">
+                        <p class="text-sm text-white">Üzgünüm, bir hata oluştu. Lütfen tekrar deneyin.</p>
+                    </div>
+                    <span class="text-xs text-gray-400 mt-1">Sistem • şimdi</span>
+                </div>
+            </div>
+        `;
+        
+        chatContainer.insertAdjacentHTML('beforeend', errorMessageHtml);
+        feather.replace();
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+    }
 }
 
 // Initialize first tab as active

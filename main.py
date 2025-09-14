@@ -237,6 +237,7 @@ def dashboard():
     return render_template("dashboard.html", user=user, stats=dashboard_stats, get_initials=get_initials)
 
 @app.route("/api/chat", methods=["POST"])
+@csrf.exempt  # Exempt from CSRF for API endpoint
 def api_chat():
     """Real AI chat endpoint for demo"""
     try:

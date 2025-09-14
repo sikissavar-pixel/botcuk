@@ -5,3 +5,4 @@ gunicorn==23.0.0
 flask_sqlalchemy
 flask-wtf==1.2.1
 requests
+werkzeug

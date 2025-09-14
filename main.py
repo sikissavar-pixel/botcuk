@@ -41,6 +41,25 @@ class User(db.Model):
     email = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(150), nullable=False)
 
+# Bot ayarları modeli
+class BotSettings(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    bot_purpose = db.Column(db.Text, nullable=True)
+    bot_title = db.Column(db.String(200), nullable=True)
+    bot_info_text = db.Column(db.Text, nullable=True)
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+    updated_at = db.Column(db.DateTime, default=db.func.current_timestamp(), onupdate=db.func.current_timestamp())
+
+# Kaydedilen bot metinleri modeli  
+class SavedBotText(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    title = db.Column(db.String(200), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    keywords = db.Column(db.String(500), nullable=True)  # anahtar kelimeler
+    created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
+
 # ---------------- ROUTES ---------------- #
 
 @app.route("/")
@@ -134,12 +153,73 @@ def conversations():
         return redirect(url_for("login"))
     return render_template("conversations.html", user=user)
 
-@app.route("/bot-settings")
+@app.route("/bot-settings", methods=["GET", "POST"])
 def bot_settings():
     user = session.get("user")
     if not user:
         return redirect(url_for("login"))
-    return render_template("bot_settings.html", user=user)
+    
+    if request.method == "POST":
+        tab = request.form.get("tab")
+        user_id = user["id"]
+        
+        # Sekme 1: Bot Amacı Kaydetme
+        if tab == "purpose":
+            purpose = request.form.get("bot_purpose")
+            if purpose:
+                bot_settings = BotSettings.query.filter_by(user_id=user_id).first()
+                if bot_settings:
+                    bot_settings.bot_purpose = purpose
+                    bot_settings.updated_at = db.func.current_timestamp()
+                else:
+                    bot_settings = BotSettings(user_id=user_id, bot_purpose=purpose)
+                    db.session.add(bot_settings)
+                db.session.commit()
+                flash("Bot amacı başarıyla kaydedildi!", "success")
+        
+        # Sekme 2: Bot Bilgileri Kaydetme  
+        elif tab == "info":
+            bot_title = request.form.get("bot_title")
+            bot_info = request.form.get("bot_info_text")
+            if bot_title and bot_info:
+                bot_settings = BotSettings.query.filter_by(user_id=user_id).first()
+                if bot_settings:
+                    bot_settings.bot_title = bot_title
+                    bot_settings.bot_info_text = bot_info
+                    bot_settings.updated_at = db.func.current_timestamp()
+                else:
+                    bot_settings = BotSettings(user_id=user_id, bot_title=bot_title, bot_info_text=bot_info)
+                    db.session.add(bot_settings)
+                db.session.commit()
+                flash("Bot bilgileri başarıyla kaydedildi!", "success")
+        
+        # Sekme 3: Yeni Metin Kaydetme
+        elif tab == "save_text":
+            text_title = request.form.get("text_title")
+            text_content = request.form.get("text_content")
+            keywords = request.form.get("keywords")
+            if text_title and text_content:
+                saved_text = SavedBotText(
+                    user_id=user_id,
+                    title=text_title,
+                    content=text_content,
+                    keywords=keywords
+                )
+                db.session.add(saved_text)
+                db.session.commit()
+                flash("Metin başarıyla kaydedildi!", "success")
+        
+        return redirect(url_for("bot_settings"))
+    
+    # Mevcut verileri getir
+    user_id = user["id"]
+    bot_settings = BotSettings.query.filter_by(user_id=user_id).first()
+    saved_texts = SavedBotText.query.filter_by(user_id=user_id).order_by(SavedBotText.created_at.desc()).all()
+    
+    return render_template("bot_settings.html", 
+                         user=user, 
+                         bot_settings=bot_settings,
+                         saved_texts=saved_texts)
 
 @app.route("/users")
 def users():

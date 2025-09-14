@@ -19,7 +19,7 @@
       border-bottom: 2px solid #ef4444;
       color: #ef4444;
     }
-    .bot-response-item:hover { background-color: #f3f4f6; }
+    .bot-response-item:hover { background-color: #374151; }
   </style>
 </head>
 <body class="font-sans antialiased text-gray-100 bg-gray-900">
@@ -91,34 +91,34 @@
         <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex justify-between items-center">
           <h1 class="text-lg font-semibold text-gray-100">🤖 Bot Yönetim Paneli</h1>
           <div class="flex items-center space-x-4">
-            <button class="p-2 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 focus:outline-none transition-all duration-200">
+            <button class="p-2 rounded-full text-gray-400 hover:text-gray-200 hover:bg-gray-700 focus:outline-none transition-all duration-200">
               <i data-feather="bell" class="h-5 w-5"></i>
             </button>
             <!-- User Dropdown - Şık Avatar -->
             <div class="relative inline-block text-left">
-              <button id="userMenuButton" class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-50 focus:outline-none transition-all duration-200">
-                {% set user_initials = get_initials(user.full_name) if user else 'AA' %}
+              <button id="userMenuButton" class="flex items-center space-x-3 px-3 py-2 rounded-lg hover:bg-gray-700 focus:outline-none transition-all duration-200">
+                {% set user_initials = user.full_name.split(' ')|map('first')|join('')|upper if user and user.full_name else 'AA' %}
                 <div class="w-8 h-8 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center text-white text-sm font-semibold shadow-lg">
                   {{ user_initials }}
                 </div>
-                <span class="text-sm font-medium text-gray-700">{{ user.full_name if user else "Yönetici" }}</span>
+                <span class="text-sm font-medium text-gray-200">{{ user.full_name if user else "Yönetici" }}</span>
                 <i data-feather="chevron-down" class="h-4 w-4 text-gray-400"></i>
               </button>
-              <div id="userMenu" class="hidden absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 border border-gray-100 overflow-hidden">
-                <div class="px-4 py-3 border-b border-gray-100">
-                  <p class="text-sm font-medium text-gray-900">{{ user.full_name if user else "Yönetici" }}</p>
-                  <p class="text-xs text-gray-500">{{ user.email if user else "admin@aibot.com" }}</p>
+              <div id="userMenu" class="hidden absolute right-0 mt-2 w-56 bg-gray-800 rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 border border-gray-600 overflow-hidden">
+                <div class="px-4 py-3 border-b border-gray-600">
+                  <p class="text-sm font-medium text-gray-100">{{ user.full_name if user else "Yönetici" }}</p>
+                  <p class="text-xs text-gray-400">{{ user.email if user else "admin@aibot.com" }}</p>
                 </div>
-                <a href="{{ url_for('dashboard') }}" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                <a href="{{ url_for('dashboard') }}" class="flex items-center px-4 py-3 text-sm text-gray-300 hover:bg-gray-700 transition-colors">
                   <i data-feather="home" class="h-4 w-4 mr-3 text-gray-400"></i>
                   Ana Sayfa
                 </a>
-                <a href="{{ url_for('bot_settings') }}" class="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 transition-colors">
+                <a href="{{ url_for('bot_settings') }}" class="flex items-center px-4 py-3 text-sm text-gray-300 hover:bg-gray-700 transition-colors">
                   <i data-feather="settings" class="h-4 w-4 mr-3 text-gray-400"></i>
                   Bot Ayarları
                 </a>
-                <hr class="border-gray-100">
-                <a href="{{ url_for('logout') }}" class="flex items-center px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors">
+                <hr class="border-gray-600">
+                <a href="{{ url_for('logout') }}" class="flex items-center px-4 py-3 text-sm text-red-400 hover:bg-red-900/20 transition-colors">
                   <i data-feather="log-out" class="h-4 w-4 mr-3 text-red-500"></i>
                   Çıkış Yap
                 </a>

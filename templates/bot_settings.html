@@ -28,9 +28,9 @@
         <div class="mb-4">
           {% for category, message in messages %}
             <div class="px-4 py-2 rounded mb-2
-              {% if category == 'success' %} bg-green-100 text-green-800 border border-green-200
-              {% elif category == 'error' %} bg-red-100 text-red-800 border border-red-200
-              {% else %} bg-gray-100 text-gray-800 border border-gray-200 {% endif %}">
+              {% if category == 'success' %} bg-green-900 text-green-200 border border-green-700
+              {% elif category == 'error' %} bg-red-900 text-red-200 border border-red-700
+              {% else %} bg-gray-800 text-gray-200 border border-gray-600 {% endif %}">
               {{ message }}
             </div>
           {% endfor %}
@@ -43,8 +43,8 @@
         <!-- Sekme 1: Bot Amacı -->
         <div id="purpose-content" class="tab-content">
             <div class="max-w-2xl">
-                <h3 class="text-lg font-medium text-gray-900 mb-4">Bot Amacı</h3>
-                <p class="text-sm text-gray-600 mb-6">
+                <h3 class="text-lg font-medium text-gray-100 mb-4">Bot Amacı</h3>
+                <p class="text-sm text-gray-300 mb-6">
                     Botunuzun amacını kullanıcılarınıza açıklayın. Bu kısa ve net bir açıklama olmalıdır.
                 </p>
                 
@@ -53,11 +53,11 @@
                     <input type="hidden" name="tab" value="purpose">
                     
                     <div class="mb-4">
-                        <label for="bot_purpose" class="block text-sm font-medium text-gray-700 mb-2">
+                        <label for="bot_purpose" class="block text-sm font-medium text-gray-200 mb-2">
                             Bot Amacı
                         </label>
                         <textarea id="bot_purpose" name="bot_purpose" rows="4" 
-                                  class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                                  class="block w-full border-gray-600 bg-gray-700 text-gray-100 placeholder-gray-400 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
                                   placeholder="Örnek: Bu bot müşteri sorularını yanıtlamak ve destek sağlamak için tasarlanmıştır.">{{ bot_settings.bot_purpose if bot_settings else '' }}</textarea>
                     </div>
                     
@@ -73,8 +73,8 @@
         <!-- Sekme 2: Bot Bilgileri -->
         <div id="info-content" class="tab-content hidden">
             <div class="max-w-2xl">
-                <h3 class="text-lg font-medium text-gray-900 mb-4">Bot Bilgi Ayarları</h3>
-                <p class="text-sm text-gray-600 mb-6">
+                <h3 class="text-lg font-medium text-gray-100 mb-4">Bot Bilgi Ayarları</h3>
+                <p class="text-sm text-gray-300 mb-6">
                     Bot başlığı ve detaylı bilgi metni girin. Bu bilgiler belirli konular hakkında sorular geldiğinde kullanılacak.
                 </p>
                 
@@ -83,24 +83,24 @@
                     <input type="hidden" name="tab" value="info">
                     
                     <div class="mb-4">
-                        <label for="bot_title" class="block text-sm font-medium text-gray-700 mb-2">
+                        <label for="bot_title" class="block text-sm font-medium text-gray-200 mb-2">
                             Bot Başlığı
                         </label>
                         <input type="text" id="bot_title" name="bot_title" 
-                               class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                               class="block w-full border-gray-600 bg-gray-700 text-gray-100 placeholder-gray-400 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
                                placeholder="Örnek: Çadır Uzmanı Bot"
                                value="{{ bot_settings.bot_title if bot_settings else '' }}">
                     </div>
                     
                     <div class="mb-4">
-                        <label for="bot_info_text" class="block text-sm font-medium text-gray-700 mb-2">
+                        <label for="bot_info_text" class="block text-sm font-medium text-gray-200 mb-2">
                             Bot Bilgi Metni
                         </label>
-                        <div class="text-xs text-gray-500 mb-2">
+                        <div class="text-xs text-gray-400 mb-2">
                             Bu metin belirli konular (örn. çadır) hakkında sorular geldiğinde kullanılacak. Sınırsız karakter girebilirsiniz.
                         </div>
                         <textarea id="bot_info_text" name="bot_info_text" rows="8" 
-                                  class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                                  class="block w-full border-gray-600 bg-gray-700 text-gray-100 placeholder-gray-400 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
                                   placeholder="Çadır hakkında detaylı bilgiler buraya yazılacak...">{{ bot_settings.bot_info_text if bot_settings else '' }}</textarea>
                     </div>
                     
@@ -116,43 +116,43 @@
         <!-- Sekme 3: Kaydedilen Metinler -->
         <div id="saved-content" class="tab-content hidden">
             <div class="max-w-4xl">
-                <h3 class="text-lg font-medium text-gray-900 mb-4">Kaydedilen Bot Metinleri</h3>
-                <p class="text-sm text-gray-600 mb-6">
+                <h3 class="text-lg font-medium text-gray-100 mb-4">Kaydedilen Bot Metinleri</h3>
+                <p class="text-sm text-gray-300 mb-6">
                     Farklı konular için bot yanıtları oluşturun ve kaydedin.
                 </p>
 
                 <!-- Yeni Metin Ekleme Formu -->
-                <div class="bg-gray-50 rounded-lg p-4 mb-6">
-                    <h4 class="text-md font-medium text-gray-900 mb-4">Yeni Metin Ekle</h4>
+                <div class="bg-gray-700 rounded-lg p-4 mb-6">
+                    <h4 class="text-md font-medium text-gray-100 mb-4">Yeni Metin Ekle</h4>
                     <form method="POST" action="{{ url_for('bot_settings') }}">
                         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="tab" value="save_text">
                         
                         <div class="grid grid-cols-1 gap-4">
                             <div>
-                                <label for="text_title" class="block text-sm font-medium text-gray-700 mb-1">
+                                <label for="text_title" class="block text-sm font-medium text-gray-200 mb-1">
                                     Başlık
                                 </label>
                                 <input type="text" id="text_title" name="text_title" 
-                                       class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                                       class="block w-full border-gray-600 bg-gray-800 text-gray-100 placeholder-gray-400 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
                                        placeholder="Örnek: Çadır Kurulum Rehberi" required>
                             </div>
                             
                             <div>
-                                <label for="keywords" class="block text-sm font-medium text-gray-700 mb-1">
-                                    Anahtar Kelimeler <span class="text-gray-500">(virgülle ayırın)</span>
+                                <label for="keywords" class="block text-sm font-medium text-gray-200 mb-1">
+                                    Anahtar Kelimeler <span class="text-gray-400">(virgülle ayırın)</span>
                                 </label>
                                 <input type="text" id="keywords" name="keywords" 
-                                       class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                                       class="block w-full border-gray-600 bg-gray-800 text-gray-100 placeholder-gray-400 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
                                        placeholder="çadır, kurulum, kamp, setup">
                             </div>
                             
                             <div>
-                                <label for="text_content" class="block text-sm font-medium text-gray-700 mb-1">
+                                <label for="text_content" class="block text-sm font-medium text-gray-200 mb-1">
                                     Metin İçeriği
                                 </label>
                                 <textarea id="text_content" name="text_content" rows="6" 
-                                          class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                                          class="block w-full border-gray-600 bg-gray-800 text-gray-100 placeholder-gray-400 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
                                           placeholder="Bot bu konuda sorular geldiğinde verecegi yanıt..." required></textarea>
                             </div>
                             

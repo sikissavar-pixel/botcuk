@@ -49,9 +49,18 @@
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
-                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                    <button id="mobile-nav-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
                         <i data-feather="menu"></i>
                     </button>
+                </div>
+            </div>
+            <!-- Mobile menu -->
+            <div id="mobile-nav-menu" class="hidden md:hidden">
+                <div class="px-2 pt-2 pb-3 space-y-1 bg-gray-900">
+                    <a href="{{ url_for('index') }}" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-800">Ana Sayfa</a>
+                    <a href="{{ url_for('pricing') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Fiyatlandırma</a>
+                    <a href="{{ url_for('register') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Kayıt Ol</a>
+                    <a href="{{ url_for('login') }}" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Giriş</a>
                 </div>
             </div>
         </div>
@@ -59,13 +68,13 @@
 
     <!-- Hero Section -->
     <section class="hero-gradient text-white">
-        <div class="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto py-16 md:py-24 px-4 sm:px-6 lg:px-8">
             <div class="text-center" data-aos="fade-up">
-                <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
+                <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight leading-tight">
                     <span class="block">İşinizi Otomatikleştirin</span>
                     <span class="block text-red-500">Yapay Zeka Konuşmalarıyla</span>
                 </h1>
-                <p class="mt-6 max-w-lg mx-auto text-xl text-gray-300">
+                <p class="mt-6 max-w-lg mx-auto text-lg md:text-xl text-gray-300 px-4">
                     WhatsApp, Instagram, JivoChat ve daha fazlasıyla akıllı botları entegre edin. Yapay zekanın müşteri sorgularını 7/24 halletmesine izin verin.
                 </p>
                 <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
@@ -479,6 +488,16 @@
                     block: 'start'
                 });
             }
+        }
+
+        // Mobile navigation toggle
+        const mobileNavButton = document.getElementById('mobile-nav-button');
+        const mobileNavMenu = document.getElementById('mobile-nav-menu');
+        
+        if (mobileNavButton && mobileNavMenu) {
+            mobileNavButton.addEventListener('click', function() {
+                mobileNavMenu.classList.toggle('hidden');
+            });
         }
     </script>
 </body>

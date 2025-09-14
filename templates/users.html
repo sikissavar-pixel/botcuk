@@ -1,21 +1,21 @@
 {% extends "dashboard.html" %}
 {% block content %}
 <div class="space-y-6">
-  <!-- Başlık ve Eylemler -->
-  <div class="flex justify-between items-center">
-    <h2 class="text-2xl font-bold text-gray-100">👥 Kullanıcı Yönetimi</h2>
-    <div class="flex space-x-3">
-      <button class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+  <!-- Başlık ve Eylemler - Mobile Responsive -->
+  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+    <h2 class="text-xl md:text-2xl font-bold text-gray-100">👥 Kullanıcı Yönetimi</h2>
+    <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
+      <button class="px-3 md:px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors text-sm md:text-base">
         👨‍💼 Yeni Kullanıcı
       </button>
-      <button class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+      <button class="px-3 md:px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm md:text-base">
         📧 Toplu Mail
       </button>
     </div>
   </div>
 
-  <!-- Kullanıcı İstatistikleri -->
-  <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+  <!-- Kullanıcı İstatistikleri - Mobile Optimized -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
     <div class="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white p-6 rounded-xl shadow-lg">
       <div class="flex items-center justify-between">
         <div>
@@ -65,24 +65,26 @@
     </div>
   </div>
 
-  <!-- Arama ve Filtreler -->
-  <div class="bg-gray-800 p-4 rounded-xl shadow-lg border border-gray-700">
-    <div class="flex flex-wrap items-center gap-4">
-      <div class="flex-1 min-w-64">
-        <input type="text" placeholder="Kullanıcı ara..." class="w-full px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 placeholder-gray-400 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+  <!-- Arama ve Filtreler - Mobile Optimized -->
+  <div class="bg-gray-800 p-3 md:p-4 rounded-xl shadow-lg border border-gray-700">
+    <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-4">
+      <div class="flex-1 min-w-0">
+        <input type="text" placeholder="Kullanıcı ara..." class="w-full px-3 md:px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 placeholder-gray-400 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent text-sm md:text-base">
       </div>
-      <select class="px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-lg focus:ring-2 focus:ring-red-500">
-        <option>Tüm Durumlar</option>
-        <option>Aktif</option>
-        <option>Pasif</option>
-        <option>Yasaklı</option>
-      </select>
-      <select class="px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-lg focus:ring-2 focus:ring-red-500">
-        <option>Son 30 Gün</option>
-        <option>Son 7 Gün</option>
-        <option>Bugün</option>
-        <option>Bu Hafta</option>
-      </select>
+      <div class="flex flex-col sm:flex-row gap-2 md:gap-3">
+        <select class="px-3 md:px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-lg focus:ring-2 focus:ring-red-500 text-sm md:text-base">
+          <option>Tüm Durumlar</option>
+          <option>Aktif</option>
+          <option>Pasif</option>
+          <option>Yasaklı</option>
+        </select>
+        <select class="px-3 md:px-4 py-2 border border-gray-600 bg-gray-700 text-gray-100 rounded-lg focus:ring-2 focus:ring-red-500 text-sm md:text-base">
+          <option>Son 30 Gün</option>
+          <option>Son 7 Gün</option>
+          <option>Bugün</option>
+          <option>Bu Hafta</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -92,187 +94,222 @@
       <table class="min-w-full divide-y divide-gray-700">
         <thead class="bg-gray-900">
           <tr>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Kullanıcı</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Durum</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Kayıt Tarihi</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Son Aktivite</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Konuşmalar</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">İşlemler</th>
+            <th class="px-3 md:px-6 py-2 md:py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Kullanıcı</th>
+            <th class="px-3 md:px-6 py-2 md:py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider hidden sm:table-cell">Durum</th>
+            <th class="px-3 md:px-6 py-2 md:py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider hidden lg:table-cell">Kayıt Tarihi</th>
+            <th class="px-3 md:px-6 py-2 md:py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider hidden md:table-cell">Son Aktivite</th>
+            <th class="px-3 md:px-6 py-2 md:py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider hidden lg:table-cell">Konuşmalar</th>
+            <th class="px-3 md:px-6 py-2 md:py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">İşlemler</th>
           </tr>
         </thead>
         <tbody class="bg-gray-800 divide-y divide-gray-700">
           <!-- Kullanıcı 1 -->
           <tr class="hover:bg-gray-700">
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap">
               <div class="flex items-center">
-                <div class="flex-shrink-0 h-10 w-10">
-                  <div class="h-10 w-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center text-white font-semibold">
+                <div class="flex-shrink-0 h-8 w-8 md:h-10 md:w-10">
+                  <div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center text-white font-semibold text-xs md:text-sm">
                     AY
                   </div>
                 </div>
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-gray-100">Ayşe Yılmaz</div>
-                  <div class="text-sm text-gray-400">ayse.yilmaz@email.com</div>
+                <div class="ml-2 md:ml-4 min-w-0 flex-1">
+                  <div class="text-xs md:text-sm font-medium text-gray-100 truncate">Ayşe Yılmaz</div>
+                  <div class="text-xs text-gray-400 truncate">ayse.yilmaz@email.com</div>
+                  <!-- Mobile summary info -->
+                  <div class="sm:hidden text-xs text-gray-400 mt-1">
+                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-green-900 text-green-200 mr-2">✅ Aktif</span>
+                    <span>2 saat önce</span>
+                  </div>
                 </div>
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-900 text-green-200">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap hidden sm:table-cell">
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-900 text-green-200">
                 ✅ Aktif
               </span>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-400 hidden lg:table-cell">
               15 Ekim 2024
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-400 hidden md:table-cell">
               2 saat önce
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-300 hidden lg:table-cell">
               23 konuşma
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-              <button class="text-red-400 hover:text-red-300 mr-3">Detay</button>
-              <button class="text-gray-400 hover:text-gray-200">Düzenle</button>
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm font-medium">
+              <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+                <button class="text-red-400 hover:text-red-300 text-left">Detay</button>
+                <button class="text-gray-400 hover:text-gray-200 text-left">Düzenle</button>
+              </div>
             </td>
           </tr>
 
           <!-- Kullanıcı 2 -->
           <tr class="hover:bg-gray-700">
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap">
               <div class="flex items-center">
-                <div class="flex-shrink-0 h-10 w-10">
-                  <div class="h-10 w-10 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center text-white font-semibold">
+                <div class="flex-shrink-0 h-8 w-8 md:h-10 md:w-10">
+                  <div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center text-white font-semibold text-xs md:text-sm">
                     MK
                   </div>
                 </div>
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-gray-100">Mehmet Kaya</div>
-                  <div class="text-sm text-gray-400">mehmet.kaya@email.com</div>
+                <div class="ml-2 md:ml-4 min-w-0 flex-1">
+                  <div class="text-xs md:text-sm font-medium text-gray-100 truncate">Mehmet Kaya</div>
+                  <div class="text-xs text-gray-400 truncate">mehmet.kaya@email.com</div>
+                  <!-- Mobile summary info -->
+                  <div class="sm:hidden text-xs text-gray-400 mt-1">
+                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-green-900 text-green-200 mr-2">✅ Aktif</span>
+                    <span>1 gün önce</span>
+                  </div>
                 </div>
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-900 text-green-200">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap hidden sm:table-cell">
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-900 text-green-200">
                 ✅ Aktif
               </span>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-400 hidden lg:table-cell">
               12 Ekim 2024
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-400 hidden md:table-cell">
               1 gün önce
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-300 hidden lg:table-cell">
               15 konuşma
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-              <button class="text-red-400 hover:text-red-300 mr-3">Detay</button>
-              <button class="text-gray-400 hover:text-gray-200">Düzenle</button>
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm font-medium">
+              <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+                <button class="text-red-400 hover:text-red-300 text-left">Detay</button>
+                <button class="text-gray-400 hover:text-gray-200 text-left">Düzenle</button>
+              </div>
             </td>
           </tr>
 
           <!-- Kullanıcı 3 -->
           <tr class="hover:bg-gray-700">
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap">
               <div class="flex items-center">
-                <div class="flex-shrink-0 h-10 w-10">
-                  <div class="h-10 w-10 rounded-full bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center text-white font-semibold">
+                <div class="flex-shrink-0 h-8 w-8 md:h-10 md:w-10">
+                  <div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center text-white font-semibold text-xs md:text-sm">
                     FT
                   </div>
                 </div>
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-gray-100">Fatma Türk</div>
-                  <div class="text-sm text-gray-400">fatma.turk@email.com</div>
+                <div class="ml-2 md:ml-4 min-w-0 flex-1">
+                  <div class="text-xs md:text-sm font-medium text-gray-100 truncate">Fatma Türk</div>
+                  <div class="text-xs text-gray-400 truncate">fatma.turk@email.com</div>
+                  <!-- Mobile summary info -->
+                  <div class="sm:hidden text-xs text-gray-400 mt-1">
+                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-yellow-900 text-yellow-200 mr-2">⏸️ Pasif</span>
+                    <span>5 gün önce</span>
+                  </div>
                 </div>
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-900 text-yellow-200">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap hidden sm:table-cell">
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-900 text-yellow-200">
                 ⏸️ Pasif
               </span>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-400 hidden lg:table-cell">
               8 Ekim 2024
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-400 hidden md:table-cell">
               5 gün önce
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-300 hidden lg:table-cell">
               7 konuşma
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-              <button class="text-red-400 hover:text-red-300 mr-3">Detay</button>
-              <button class="text-gray-400 hover:text-gray-200">Düzenle</button>
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm font-medium">
+              <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+                <button class="text-red-400 hover:text-red-300 text-left">Detay</button>
+                <button class="text-gray-400 hover:text-gray-200 text-left">Düzenle</button>
+              </div>
             </td>
           </tr>
 
           <!-- Kullanıcı 4 -->
           <tr class="hover:bg-gray-700">
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap">
               <div class="flex items-center">
-                <div class="flex-shrink-0 h-10 w-10">
-                  <div class="h-10 w-10 rounded-full bg-gradient-to-r from-red-400 to-red-600 flex items-center justify-center text-white font-semibold">
+                <div class="flex-shrink-0 h-8 w-8 md:h-10 md:w-10">
+                  <div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-gradient-to-r from-red-400 to-red-600 flex items-center justify-center text-white font-semibold text-xs md:text-sm">
                     CA
                   </div>
                 </div>
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-gray-100">Can Arslan</div>
-                  <div class="text-sm text-gray-400">can.arslan@email.com</div>
+                <div class="ml-2 md:ml-4 min-w-0 flex-1">
+                  <div class="text-xs md:text-sm font-medium text-gray-100 truncate">Can Arslan</div>
+                  <div class="text-xs text-gray-400 truncate">can.arslan@email.com</div>
+                  <!-- Mobile summary info -->
+                  <div class="sm:hidden text-xs text-gray-400 mt-1">
+                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-green-900 text-green-200 mr-2">✅ Aktif</span>
+                    <span>6 saat önce</span>
+                  </div>
                 </div>
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-900 text-green-200">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap hidden sm:table-cell">
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-900 text-green-200">
                 ✅ Aktif
               </span>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-400 hidden lg:table-cell">
               3 Ekim 2024
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-400 hidden md:table-cell">
               6 saat önce
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-300 hidden lg:table-cell">
               31 konuşma
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-              <button class="text-red-400 hover:text-red-300 mr-3">Detay</button>
-              <button class="text-gray-400 hover:text-gray-200">Düzenle</button>
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm font-medium">
+              <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+                <button class="text-red-400 hover:text-red-300 text-left">Detay</button>
+                <button class="text-gray-400 hover:text-gray-200 text-left">Düzenle</button>
+              </div>
             </td>
           </tr>
 
           <!-- Kullanıcı 5 -->
           <tr class="hover:bg-gray-700">
-            <td class="px-6 py-4 whitespace-nowrap">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap">
               <div class="flex items-center">
-                <div class="flex-shrink-0 h-10 w-10">
-                  <div class="h-10 w-10 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-white font-semibold">
+                <div class="flex-shrink-0 h-8 w-8 md:h-10 md:w-10">
+                  <div class="h-8 w-8 md:h-10 md:w-10 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-white font-semibold text-xs md:text-sm">
                     EG
                   </div>
                 </div>
-                <div class="ml-4">
-                  <div class="text-sm font-medium text-gray-100">Elif Güler</div>
-                  <div class="text-sm text-gray-400">elif.guler@email.com</div>
+                <div class="ml-2 md:ml-4 min-w-0 flex-1">
+                  <div class="text-xs md:text-sm font-medium text-gray-100 truncate">Elif Güler</div>
+                  <div class="text-xs text-gray-400 truncate">elif.guler@email.com</div>
+                  <!-- Mobile summary info -->
+                  <div class="sm:hidden text-xs text-gray-400 mt-1">
+                    <span class="inline-flex items-center px-1.5 py-0.5 rounded text-xs font-medium bg-red-900 text-red-200 mr-2">❌ Yasaklı</span>
+                    <span>10 gün önce</span>
+                  </div>
                 </div>
               </div>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap">
-              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-900 text-red-200">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap hidden sm:table-cell">
+              <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-red-900 text-red-200">
                 ❌ Yasaklı
               </span>
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-400 hidden lg:table-cell">
               1 Ekim 2024
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-400 hidden md:table-cell">
               10 gün önce
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-300">
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm text-gray-300 hidden lg:table-cell">
               2 konuşma
             </td>
-            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-              <button class="text-red-400 hover:text-red-300 mr-3">Detay</button>
-              <button class="text-gray-400 hover:text-gray-200">Düzenle</button>
+            <td class="px-3 md:px-6 py-3 md:py-4 whitespace-nowrap text-xs md:text-sm font-medium">
+              <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+                <button class="text-red-400 hover:text-red-300 text-left">Detay</button>
+                <button class="text-gray-400 hover:text-gray-200 text-left">Düzenle</button>
+              </div>
             </td>
           </tr>
         </tbody>

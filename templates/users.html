@@ -1,5 +1,323 @@
 {% extends "dashboard.html" %}
 {% block content %}
-<h2 class="text-xl font-bold mb-4">Users</h2>
-<p>Kayıtlı kullanıcıları burada görebilirsin.</p>
+<div class="space-y-6">
+  <!-- Başlık ve Eylemler -->
+  <div class="flex justify-between items-center">
+    <h2 class="text-2xl font-bold text-gray-800">👥 Kullanıcı Yönetimi</h2>
+    <div class="flex space-x-3">
+      <button class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors">
+        👨‍💼 Yeni Kullanıcı
+      </button>
+      <button class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors">
+        📧 Toplu Mail
+      </button>
+    </div>
+  </div>
+
+  <!-- Kullanıcı İstatistikleri -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+    <div class="bg-gradient-to-r from-indigo-500 to-indigo-600 text-white p-6 rounded-xl shadow-lg">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-indigo-100 text-sm">Toplam Kullanıcı</p>
+          <p class="text-3xl font-bold">1,247</p>
+        </div>
+        <div class="bg-indigo-400 bg-opacity-30 p-3 rounded-full">
+          <i data-feather="users" class="w-6 h-6"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-r from-green-500 to-green-600 text-white p-6 rounded-xl shadow-lg">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-green-100 text-sm">Aktif Kullanıcı</p>
+          <p class="text-3xl font-bold">892</p>
+        </div>
+        <div class="bg-green-400 bg-opacity-30 p-3 rounded-full">
+          <i data-feather="user-check" class="w-6 h-6"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-6 rounded-xl shadow-lg">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-orange-100 text-sm">Bu Ay Yeni</p>
+          <p class="text-3xl font-bold">127</p>
+        </div>
+        <div class="bg-orange-400 bg-opacity-30 p-3 rounded-full">
+          <i data-feather="user-plus" class="w-6 h-6"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-r from-red-500 to-red-600 text-white p-6 rounded-xl shadow-lg">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-red-100 text-sm">Ortalama Aktivite</p>
+          <p class="text-3xl font-bold">87%</p>
+        </div>
+        <div class="bg-red-400 bg-opacity-30 p-3 rounded-full">
+          <i data-feather="activity" class="w-6 h-6"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arama ve Filtreler -->
+  <div class="bg-white p-4 rounded-xl shadow-lg border border-gray-200">
+    <div class="flex flex-wrap items-center gap-4">
+      <div class="flex-1 min-w-64">
+        <input type="text" placeholder="Kullanıcı ara..." class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent">
+      </div>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500">
+        <option>Tüm Durumlar</option>
+        <option>Aktif</option>
+        <option>Pasif</option>
+        <option>Yasaklı</option>
+      </select>
+      <select class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500">
+        <option>Son 30 Gün</option>
+        <option>Son 7 Gün</option>
+        <option>Bugün</option>
+        <option>Bu Hafta</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Kullanıcı Listesi -->
+  <div class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kullanıcı</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Durum</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Kayıt Tarihi</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Son Aktivite</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Konuşmalar</th>
+            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">İşlemler</th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <!-- Kullanıcı 1 -->
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 h-10 w-10">
+                  <div class="h-10 w-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-400 flex items-center justify-center text-white font-semibold">
+                    AY
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <div class="text-sm font-medium text-gray-900">Ayşe Yılmaz</div>
+                  <div class="text-sm text-gray-500">ayse.yilmaz@email.com</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                ✅ Aktif
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              15 Ekim 2024
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              2 saat önce
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              23 konuşma
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <button class="text-red-600 hover:text-red-900 mr-3">Detay</button>
+              <button class="text-gray-600 hover:text-gray-900">Düzenle</button>
+            </td>
+          </tr>
+
+          <!-- Kullanıcı 2 -->
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 h-10 w-10">
+                  <div class="h-10 w-10 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 flex items-center justify-center text-white font-semibold">
+                    MK
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <div class="text-sm font-medium text-gray-900">Mehmet Kaya</div>
+                  <div class="text-sm text-gray-500">mehmet.kaya@email.com</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                ✅ Aktif
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              12 Ekim 2024
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              1 gün önce
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              15 konuşma
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <button class="text-red-600 hover:text-red-900 mr-3">Detay</button>
+              <button class="text-gray-600 hover:text-gray-900">Düzenle</button>
+            </td>
+          </tr>
+
+          <!-- Kullanıcı 3 -->
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 h-10 w-10">
+                  <div class="h-10 w-10 rounded-full bg-gradient-to-r from-green-400 to-green-600 flex items-center justify-center text-white font-semibold">
+                    FT
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <div class="text-sm font-medium text-gray-900">Fatma Türk</div>
+                  <div class="text-sm text-gray-500">fatma.turk@email.com</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                ⏸️ Pasif
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              8 Ekim 2024
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              5 gün önce
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              7 konuşma
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <button class="text-red-600 hover:text-red-900 mr-3">Detay</button>
+              <button class="text-gray-600 hover:text-gray-900">Düzenle</button>
+            </td>
+          </tr>
+
+          <!-- Kullanıcı 4 -->
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 h-10 w-10">
+                  <div class="h-10 w-10 rounded-full bg-gradient-to-r from-red-400 to-red-600 flex items-center justify-center text-white font-semibold">
+                    CA
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <div class="text-sm font-medium text-gray-900">Can Arslan</div>
+                  <div class="text-sm text-gray-500">can.arslan@email.com</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                ✅ Aktif
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              3 Ekim 2024
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              6 saat önce
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              31 konuşma
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <button class="text-red-600 hover:text-red-900 mr-3">Detay</button>
+              <button class="text-gray-600 hover:text-gray-900">Düzenle</button>
+            </td>
+          </tr>
+
+          <!-- Kullanıcı 5 -->
+          <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 h-10 w-10">
+                  <div class="h-10 w-10 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center text-white font-semibold">
+                    EG
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <div class="text-sm font-medium text-gray-900">Elif Güler</div>
+                  <div class="text-sm text-gray-500">elif.guler@email.com</div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                ❌ Yasaklı
+              </span>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              1 Ekim 2024
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              10 gün önce
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+              2 konuşma
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+              <button class="text-red-600 hover:text-red-900 mr-3">Detay</button>
+              <button class="text-gray-600 hover:text-gray-900">Düzenle</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Sayfalama -->
+    <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
+      <div class="flex items-center justify-between">
+        <div class="flex-1 flex justify-between sm:hidden">
+          <button class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+            Önceki
+          </button>
+          <button class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
+            Sonraki
+          </button>
+        </div>
+        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+          <div>
+            <p class="text-sm text-gray-700">
+              <span class="font-medium">1</span> ile <span class="font-medium">5</span> arası gösteriliyor, toplam <span class="font-medium">1,247</span> kullanıcı
+            </p>
+          </div>
+          <div>
+            <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px">
+              <button class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                Önceki
+              </button>
+              <button class="bg-red-50 border-red-500 text-red-600 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                1
+              </button>
+              <button class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                2
+              </button>
+              <button class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
+                3
+              </button>
+              <button class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                Sonraki
+              </button>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

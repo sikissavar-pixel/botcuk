@@ -61,7 +61,6 @@
             </div>
             <!-- 🔥 BURASI DÜZELTİLDİ -->
             <form class="mt-8 space-y-6" action="{{ url_for('register') }}" method="POST">
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="remember" value="true">
                 <div class="rounded-md shadow-sm space-y-4">
                     <div>

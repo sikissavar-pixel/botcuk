@@ -1,19 +1,36 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
-from flask_wtf.csrf import CSRFProtect
+from flask_wtf.csrf import CSRFProtect, CSRFError
 import requests
 import os
 from dotenv import load_dotenv
+from werkzeug.security import generate_password_hash, check_password_hash
+import sys
 
 # .env yükle
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.getenv("FLASK_SECRET_KEY", "fallback-secret")
-csrf = CSRFProtect(app)  # CSRF koruması ekle
+
+# Production-ready secret key configuration
+secret_key = os.getenv("FLASK_SECRET_KEY")
+if not secret_key:
+    if os.getenv("FLASK_ENV") == "production":
+        print("ERROR: FLASK_SECRET_KEY environment variable is required for production")
+        sys.exit(1)
+    else:
+        # Only use fallback for development
+        secret_key = "dev-secret-key-change-in-production"
+        print("WARNING: Using development secret key. Set FLASK_SECRET_KEY for production.")
+
+app.secret_key = secret_key
+
+# Initialize CSRF protection
+csrf = CSRFProtect(app)
 
 # ---------------- DATABASE ---------------- #
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{os.path.join(basedir, 'instance', 'users.db')}"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
@@ -54,7 +71,8 @@ def register():
             return redirect(url_for("register"))
 
         try:
-            new_user = User(full_name=full_name, email=email, password=password)
+            hashed_password = generate_password_hash(password)
+            new_user = User(full_name=full_name, email=email, password=hashed_password)
             db.session.add(new_user)
             db.session.commit()
 
@@ -80,8 +98,8 @@ def login():
             return redirect(url_for("login"))
 
         try:
-            user = User.query.filter_by(email=email, password=password).first()
-            if user:
+            user = User.query.filter_by(email=email).first()
+            if user and check_password_hash(user.password, password):
                 session["user"] = {"id": user.id, "full_name": user.full_name, "email": user.email}
                 flash("Giriş başarılı! 👌", "success")
                 return redirect(url_for("dashboard"))
@@ -150,11 +168,20 @@ def pricing():
 
 # ---------------- CHAT API ---------------- #
 @app.route("/api/chat", methods=["POST"])
+@csrf.exempt  # Exempt JSON API from CSRF
 def chat():
     user_message = request.json.get("message")
 
+    # Check for API key
+    api_key = os.getenv('OPENROUTER_API_KEY')
+    if not api_key:
+        return jsonify({
+            "error": "API configuration error", 
+            "message": "Chat service is temporarily unavailable. Please try again later."
+        }), 503
+    
     headers = {
-        "Authorization": f"Bearer {os.getenv('OPENROUTER_API_KEY')}",
+        "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
     payload = {
@@ -173,13 +200,19 @@ def chat():
     else:
         return jsonify({"error": "API error", "details": response.text}), 500
 
-# ---------------- FLASH MESAJLARI ---------------- #
-@app.context_processor
-def inject_flash_messages():
-    return dict(get_flashed_messages=flash)
+# ---------------- ERROR HANDLERS ---------------- #
+@app.errorhandler(CSRFError)
+def handle_csrf_error(e):
+    flash("Security token expired. Please try again.", "error")
+    return redirect(request.referrer or url_for('index'))
+
+# Flash messages are automatically available in templates through Flask
 
 # ---------------- RUN ---------------- #
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()  # DB tablolarını oluştur
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    
+    # Production-ready debug configuration
+    debug_mode = os.getenv("FLASK_DEBUG", "False").lower() == "true"
+    app.run(host="0.0.0.0", port=5000, debug=debug_mode)

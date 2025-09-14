@@ -1,0 +1,7 @@
+Flask==3.0.3
+python-dotenv==1.0.1
+requests==2.32.3
+gunicorn==23.0.0
+flask_sqlalchemy
+flask-wtf==1.2.1
+requests

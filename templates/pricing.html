@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - AI Bot Platform</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        .pricing-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background-color: #ef4444;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-black text-white sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i data-feather="cpu" class="h-8 w-8 text-red-500"></i>
+                        <span class="ml-2 text-xl font-bold">AI<span class="text-red-500">Bot</span>Platform</span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="{{ url_for('index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Home</a>
+                        <a href="{{ url_for('pricing') }}" class="px-3 py-2 rounded-md text-sm font-medium bg-gray-900 text-white">Pricing</a>
+                        <a href="{{ url_for('register') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Register</a>
+                        <a href="{{ url_for('login') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Login</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none">
+                        <i data-feather="menu"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Pricing Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl" data-aos="fade-up">
+                    Simple, Transparent Pricing
+                </h2>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    No hidden fees. Start with a free trial and upgrade when you're ready.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+                <!-- Starter -->
+                <div class="pricing-card bg-gray-50 p-8 rounded-lg transition-all duration-300 relative" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-lg font-medium text-gray-900">Starter</h3>
+                    <p class="mt-2 text-base text-gray-500">
+                        Perfect for small businesses getting started
+                    </p>
+                    <div class="mt-6">
+                        <span class="text-4xl font-extrabold text-gray-900">$19</span>
+                        <span class="text-base font-medium text-gray-500">/month</span>
+                    </div>
+                    <ul class="mt-8 space-y-4">
+                        <li class="flex items-start">
+                            <i data-feather="check" class="h-5 w-5 text-green-500"></i>
+                            <span class="ml-3 text-base text-gray-700">1 AI Bot</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="h-5 w-5 text-green-500"></i>
+                            <span class="ml-3 text-base text-gray-700">500 conversations/month</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="h-5 w-5 text-green-500"></i>
+                            <span class="ml-3 text-base text-gray-700">WhatsApp Integration</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="x" class="h-5 w-5 text-gray-400"></i>
+                            <span class="ml-3 text-base text-gray-500">Instagram Integration</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="x" class="h-5 w-5 text-gray-400"></i>
+                            <span class="ml-3 text-base text-gray-500">JivoChat Integration</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <a href="{{ url_for('register') }}" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-800 hover:bg-gray-700">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Business -->
+                <div class="pricing-card bg-gray-50 p-8 rounded-lg transition-all duration-300 relative border-2 border-red-500" data-aos="fade-up" data-aos-delay="300">
+                    <div class="popular-badge">MOST POPULAR</div>
+                    <h3 class="text-lg font-medium text-gray-900">Business</h3>
+                    <p class="mt-2 text-base text-gray-500">
+                        For growing businesses with multiple channels
+                    </p>
+                    <div class="mt-6">
+                        <span class="text-4xl font-extrabold text-gray-900">$49</span>
+                        <span class="text-base font-medium text-gray-500">/month</span>
+                    </div>
+                    <ul class="mt-8 space-y-4">
+                        <li class="flex items-start">
+                            <i data-feather="check" class="h-5 w-5 text-green-500"></i>
+                            <span class="ml-3 text-base text-gray-700">3 AI Bots</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="h-5 w-5 text-green-500"></i>
+                            <span class="ml-3 text-base text-gray-700">2000 conversations/month</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="h-5 w-5 text-green-500"></i>
+                            <span class="ml-3 text-base text-gray-700">WhatsApp Integration</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="h-5 w-5 text-green-500"></i>
+                            <span class="ml-3 text-base text-gray-700">Instagram Integration</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="h-5 w-5 text-green-500"></i>
+                            <span class="ml-3 text-base text-gray-700">JivoChat Integration</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <a href="{{ url_for('register') }}" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-red-600 hover:bg-red-700">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Enterprise -->
+                <div class="pricing-card bg-gray-50 p-8 rounded-lg transition-all duration-300 relative" data-aos="fade-up" data-aos-delay="400">
+                    <h3 class="text-lg font-medium text-gray-900">Enterprise</h3>
+                    <p class="mt-2 text-base text-gray-500">
+                        For large businesses with custom needs
+                    </p>
+                    <div class="mt-6">
+                        <span class="text-4xl font-extrabold text-gray-900">$99</span>
+                        <span class="text-base font-medium text-gray-500">/month</span>
+                    </div>
+                    <ul class="mt-8 space-y-4">
+                        <li class="flex items-start">
+                            <i data-feather="check" class="h-5 w-5 text-green-500"></i>
+                            <span class="ml-3 text-base text-gray-700">Unlimited AI Bots</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="h-5 w-5 text-green-500"></i>
+                            <span class="ml-3 text-base text-gray-700">10,000 conversations/month</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="h-5 w-5 text-green-500"></i>
+                            <span class="ml-3 text-base text-gray-700">All Platform Integrations</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="h-5 w-5 text-green-500"></i>
+                            <span class="ml-3 text-base text-gray-700">Priority Support</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="h-5 w-5 text-green-500"></i>
+                            <span class="ml-3 text-base text-gray-700">Custom Training</span>
+                        </li>
+                    </ul>
+                    <div class="mt-8">
+                        <a href="{{ url_for('register') }}" class="w-full flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-gray-800 hover:bg-gray-700">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-gray-50 p-8 rounded-lg">
+                <h3 class="text-lg font-medium text-center text-gray-900">Not sure which plan is right for you?</h3>
+                <p class="mt-2 text-center text-base text-gray-500">
+                    Contact our sales team and we'll help you find the right solution.
+                </p>
+                <div class="mt-6 text-center">
+                    <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-black hover:bg-gray-800">
+                        <i data-feather="mail" class="mr-2"></i>
+                        Contact Sales
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Product</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Features</a></li>
+                        <li><a href="{{ url_for('pricing') }}" class="text-base text-gray-300 hover:text-white">Pricing</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Integrations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">About</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Resources</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Documentation</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Guides</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">API Status</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Privacy</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Terms</a></li>
+                        <li><a href="#" class="text-base text-gray-300 hover:text-white">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between">
+                <p class="text-base text-gray-400">
+                    &copy; 2023 AIBotPlatform. All rights reserved.
+                </p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="facebook"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i data-feather="linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        feather.replace();
+    </script>
+</body>
+</html>

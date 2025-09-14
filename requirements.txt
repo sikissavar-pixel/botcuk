@@ -6,3 +6,4 @@ flask_sqlalchemy
 flask-wtf==1.2.1
 requests
 werkzeug
+openai

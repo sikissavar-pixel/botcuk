@@ -6,6 +6,7 @@ import os
 from dotenv import load_dotenv
 from werkzeug.security import generate_password_hash, check_password_hash
 import sys
+from openai_service import chat_with_sahilkamp_bot
 
 def get_initials(full_name):
     """Generate initials from full name"""
@@ -234,6 +235,27 @@ def dashboard():
     }
     
     return render_template("dashboard.html", user=user, stats=dashboard_stats, get_initials=get_initials)
+
+@app.route("/api/chat", methods=["POST"])
+def api_chat():
+    """Real AI chat endpoint for demo"""
+    try:
+        data = request.get_json()
+        user_message = data.get("message", "").strip()
+        
+        if not user_message:
+            return jsonify({"error": "Mesaj boş olamaz"}), 400
+            
+        # Get AI response
+        ai_response = chat_with_sahilkamp_bot(user_message)
+        
+        return jsonify({
+            "response": ai_response,
+            "timestamp": "şimdi"
+        })
+        
+    except Exception as e:
+        return jsonify({"error": "Sistem hatası"}), 500
 
 @app.route("/logout")
 def logout():

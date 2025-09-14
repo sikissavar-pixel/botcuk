@@ -98,8 +98,11 @@ def register():
             return redirect(url_for("register"))
 
         try:
-            hashed_password = generate_password_hash(password)
-            new_user = User(full_name=full_name, email=email, password=hashed_password)
+            hashed_password = generate_password_hash(password) if password else ""
+            new_user = User()
+            new_user.full_name = full_name
+            new_user.email = email
+            new_user.password = hashed_password
             db.session.add(new_user)
             db.session.commit()
 
@@ -133,7 +136,7 @@ def login():
 
         try:
             user = User.query.filter_by(email=email).first()
-            if user and check_password_hash(user.password, password):
+            if user and password and check_password_hash(user.password, password):
                 # Admin kontrolü (sahilkamp@gmail.com admin'dir)
                 is_admin = (user.email == "sahilkamp@gmail.com")
                 session["user"] = {
@@ -256,7 +259,9 @@ def bot_settings():
                     bot_settings.bot_purpose = purpose
                     bot_settings.updated_at = db.func.current_timestamp()
                 else:
-                    bot_settings = BotSettings(user_id=user_id, bot_purpose=purpose)
+                    bot_settings = BotSettings()
+                    bot_settings.user_id = user_id
+                    bot_settings.bot_purpose = purpose
                     db.session.add(bot_settings)
                 db.session.commit()
                 flash("Bot amacı başarıyla kaydedildi!", "success")
@@ -272,7 +277,10 @@ def bot_settings():
                     bot_settings.bot_info_text = bot_info
                     bot_settings.updated_at = db.func.current_timestamp()
                 else:
-                    bot_settings = BotSettings(user_id=user_id, bot_title=bot_title, bot_info_text=bot_info)
+                    bot_settings = BotSettings()
+                    bot_settings.user_id = user_id
+                    bot_settings.bot_title = bot_title
+                    bot_settings.bot_info_text = bot_info
                     db.session.add(bot_settings)
                 db.session.commit()
                 flash("Bot bilgileri başarıyla kaydedildi!", "success")
@@ -283,12 +291,11 @@ def bot_settings():
             text_content = request.form.get("text_content")
             keywords = request.form.get("keywords")
             if text_title and text_content:
-                saved_text = SavedBotText(
-                    user_id=user_id,
-                    title=text_title,
-                    content=text_content,
-                    keywords=keywords
-                )
+                saved_text = SavedBotText()
+                saved_text.user_id = user_id
+                saved_text.title = text_title
+                saved_text.content = text_content
+                saved_text.keywords = keywords
                 db.session.add(saved_text)
                 db.session.commit()
                 flash("Metin başarıyla kaydedildi!", "success")
@@ -330,39 +337,11 @@ def billing():
 def pricing():
     return render_template("pricing.html")
 
-# ---------------- CHAT API ---------------- #
-@app.route("/api/chat", methods=["POST"])
-@csrf.exempt  # Exempt JSON API from CSRF
-def chat():
-    user_message = request.json.get("message")
-
-    # Check for API key
-    api_key = os.getenv('OPENROUTER_API_KEY')
-    if not api_key:
-        return jsonify({
-            "error": "API configuration error", 
-            "message": "Chat service is temporarily unavailable. Please try again later."
-        }), 503
-    
-    headers = {
-        "Authorization": f"Bearer {api_key}",
-        "Content-Type": "application/json"
-    }
-    payload = {
-        "model": "openai/gpt-4o-mini",
-        "messages": [
-            {"role": "system", "content": "Sen müşteri destek botusun."},
-            {"role": "user", "content": user_message}
-        ]
-    }
-
-    response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=payload)
-
-    if response.status_code == 200:
-        reply = response.json()["choices"][0]["message"]["content"]
-        return jsonify({"reply": reply})
-    else:
-        return jsonify({"error": "API error", "details": response.text}), 500
+# ---------------- HEALTH CHECK ---------------- #
+@app.route("/health")
+def health():
+    """Health check endpoint for deployment monitoring"""
+    return jsonify({"status": "ok", "service": "botcuk-platform"}), 200
 
 # ---------------- ERROR HANDLERS ---------------- #
 @app.errorhandler(CSRFError)
@@ -380,4 +359,11 @@ if __name__ == "__main__":
     # Production-ready configuration
     debug_mode = os.getenv("FLASK_DEBUG", "False").lower() == "true"
     port = int(os.getenv("PORT", 5000))  # Use Replit's PORT environment variable
-    app.run(host="0.0.0.0", port=port, debug=debug_mode)
+    
+    # Use Gunicorn in production, Flask dev server for development
+    if os.getenv("FLASK_ENV") == "production":
+        # Production should use Gunicorn (configured in deployment)
+        pass
+    else:
+        # Development server
+        app.run(host="0.0.0.0", port=port, debug=debug_mode)

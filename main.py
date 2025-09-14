@@ -7,6 +7,13 @@ from dotenv import load_dotenv
 from werkzeug.security import generate_password_hash, check_password_hash
 import sys
 
+def get_initials(full_name):
+    """Generate initials from full name"""
+    if not full_name:
+        return 'AA'
+    words = full_name.strip().split()[:2]
+    return ''.join(word[0].upper() for word in words if word)
+
 # .env yükle
 load_dotenv()
 
@@ -226,7 +233,7 @@ def dashboard():
         'completion_percentage': sum([has_purpose, has_info, saved_texts_count > 0]) * 33.33
     }
     
-    return render_template("dashboard.html", user=user, stats=dashboard_stats)
+    return render_template("dashboard.html", user=user, stats=dashboard_stats, get_initials=get_initials)
 
 @app.route("/logout")
 def logout():

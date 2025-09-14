@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - AI Bot Platform</title>
+    <title>Giriş Yap - AI Bot Platform</title>
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -32,10 +32,10 @@
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="{{ url_for('index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Home</a>
-                        <a href="{{ url_for('pricing') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Pricing</a>
-                        <a href="{{ url_for('register') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">Register</a>
-                        <a href="{{ url_for('login') }}" class="px-3 py-2 rounded-md text-sm font-medium bg-gray-900 text-white">Login</a>
+                        <a href="{{ url_for('index') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">🏠 Ana Sayfa</a>
+                        <a href="{{ url_for('pricing') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">💰 Fiyatlar</a>
+                        <a href="{{ url_for('register') }}" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700">📝 Kayıt Ol</a>
+                        <a href="{{ url_for('login') }}" class="px-3 py-2 rounded-md text-sm font-medium bg-gray-900 text-white">🔑 Giriş Yap</a>
                     </div>
                 </div>
                 <div class="-mr-2 flex md:hidden">
@@ -53,10 +53,10 @@
             <div class="text-center">
                 <i data-feather="cpu" class="mx-auto h-12 w-12 text-red-500"></i>
                 <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
-                    Sign in to your account
+                    🔑 Hesabınıza Giriş Yapın
                 </h2>
                 <p class="mt-2 text-sm text-gray-600">
-                    Or <a href="{{ url_for('register') }}" class="font-medium text-red-600 hover:text-red-500">create a new account</a>
+                    Hesabınız yok mu? <a href="{{ url_for('register') }}" class="font-medium text-red-600 hover:text-red-500">📝 Yeni hesap oluşturun</a>
                 </p>
             </div>
             <!-- 🔥 BURASI DÜZELTİLDİ -->
@@ -66,11 +66,11 @@
                 <div class="rounded-md shadow-sm space-y-4">
                     <div>
                         <label for="email-address" class="sr-only">Email address</label>
-                        <input id="email-address" name="email" type="email" autocomplete="email" required class="form-input appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" placeholder="Email address">
+                        <input id="email-address" name="email" type="email" autocomplete="email" required class="form-input appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" placeholder="📧 E-posta adresiniz">
                     </div>
                     <div>
                         <label for="password" class="sr-only">Password</label>
-                        <input id="password" name="password" type="password" autocomplete="current-password" required class="form-input appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" placeholder="Password">
+                        <input id="password" name="password" type="password" autocomplete="current-password" required class="form-input appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500 focus:z-10 sm:text-sm" placeholder="🔒 Şifreniz">
                     </div>
                 </div>
 
@@ -78,13 +78,13 @@
                     <div class="flex items-center">
                         <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
                         <label for="remember-me" class="ml-2 block text-sm text-gray-900">
-                            Remember me
+                            📝 Beni hatırla
                         </label>
                     </div>
 
                     <div class="text-sm">
                         <a href="#" class="font-medium text-red-600 hover:text-red-500">
-                            Forgot your password?
+                            🤔 Şifrenizi mi unuttunuz?
                         </a>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                             <i data-feather="log-in" class="h-5 w-5 text-red-300 group-hover:text-red-200"></i>
                         </span>
-                        Sign in
+                        🚀 Giriş Yap
                     </button>
                 </div>
             </form>

@@ -1,9 +1,9 @@
 Flask==3.0.3
+Werkzeug==3.0.3
 python-dotenv==1.0.1
 requests==2.32.3
 gunicorn==23.0.0
-flask_sqlalchemy
-flask-wtf==1.2.1
-requests
-werkzeug
-openai
+Flask-SQLAlchemy==3.1.1
+Flask-WTF==1.2.1
+openai==1.40.0
+psycopg2-binary==2.9.9
